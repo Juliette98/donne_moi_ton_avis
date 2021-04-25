@@ -1,1 +1,20 @@
-<p>header works!</p>
+<mat-toolbar color="primary">
+  <img [src]="logoPath" alt="logo" width="200px"/>
+  <div class="pull-right">
+    <button routerLink="/creation" mat-raised-button color="accent" class="align-vertical-super mr-50">
+      <mat-icon>add_box</mat-icon>
+      Déposer un avis
+    </button>
+    <mat-icon routerLink="/accueil" class="font-size-45 align-vertical-sub mr-50">home</mat-icon>
+    <button mat-button [matMenuTriggerFor]="menu" class="mr-50">
+      <mat-icon class="font-size-45 align-vertical-sub">account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Profil</button>
+      <button mat-menu-item>Favoris</button>
+      <button mat-menu-item>Paramètre</button>
+      <button routerLink="/connexion" mat-menu-item>Déconnexion</button>
+    </mat-menu>
+
+  </div>
+</mat-toolbar>
