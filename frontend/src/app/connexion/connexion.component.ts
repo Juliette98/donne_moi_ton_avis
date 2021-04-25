@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConnexionComponent implements OnInit {
 
+  logoPath: any;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.logoPath = "../../assets/images/util/logo.png";
   }
 
 }
