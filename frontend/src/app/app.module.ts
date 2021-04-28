@@ -17,6 +17,11 @@ import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
+import { MatMenuModule } from "@angular/material/menu";
+import {MatGridListModule} from "@angular/material/grid-list";
+import { HttpClientModule } from "@angular/common/http";
+import { PublicationBlockComponent } from './publication-block/publication-block.component';
+
 
 
 
@@ -29,6 +34,7 @@ import {MatIconModule} from '@angular/material/icon';
     InscriptionComponent,
     PublicationComponent,
     CreationPublicationComponent,
+    PublicationBlockComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +47,10 @@ import {MatIconModule} from '@angular/material/icon';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    MatMenuModule,
+    MatGridListModule,
+    HttpClientModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
