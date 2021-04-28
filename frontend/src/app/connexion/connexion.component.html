@@ -5,19 +5,18 @@
 
     <div>
       <mat-form-field appearance="fill"  class="margin-input">
-        <input matInput type="email" placeholder="Identifiant" class="input-size">
+        <input matInput type="email" placeholder="Identifiant" class="input-size" [(ngModel)]="login">
       </mat-form-field>
       <br>
       <mat-form-field appearance="fill" class="margin-input">
-        <input matInput type="password" placeholder="Mot de passe" class="input-size">
+        <input matInput type="password" placeholder="Mot de passe" class="input-size" [(ngModel)]="password">
       </mat-form-field>
 
       <a href="/connexion" class="margin-input font-size-s"> Mot de passe oublié?</a>
-      <button routerLink="/accueil" mat-raised-button color="primary" class="margin-center mt-1">
+      <button (click)="submit()" mat-raised-button color="primary" class="margin-center mt-1">
         Se connecter
       </button>
     </div>
-
   </div>
   <div class="border-form h-100 mt-1">
     <p class="text-center mt-1 font-size-lg">Vous n'avez pas encore de compte? </p>
