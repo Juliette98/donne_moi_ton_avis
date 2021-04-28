@@ -10,7 +10,6 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { PublicationComponent } from './publication/publication.component';
 import { CreationPublicationComponent } from './creation-publication/creation-publication.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PublicationsComponent } from './publications/publications.component';
 import { FormsModule} from '@angular/forms';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
@@ -30,7 +29,6 @@ import {MatIconModule} from '@angular/material/icon';
     InscriptionComponent,
     PublicationComponent,
     CreationPublicationComponent,
-    PublicationsComponent
   ],
   imports: [
     BrowserModule,
