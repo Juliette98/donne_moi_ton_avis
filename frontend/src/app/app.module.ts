@@ -10,6 +10,16 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { PublicationComponent } from './publication/publication.component';
 import { CreationPublicationComponent } from './creation-publication/creation-publication.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PublicationsComponent } from './publications/publications.component';
+import { FormsModule} from '@angular/forms';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+
+
 
 @NgModule({
   declarations: [
@@ -19,12 +29,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ConnexionComponent,
     InscriptionComponent,
     PublicationComponent,
-    CreationPublicationComponent
+    CreationPublicationComponent,
+    PublicationsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
