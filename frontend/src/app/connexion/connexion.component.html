@@ -1,1 +1,25 @@
-<p>connexion works!</p>
+<img [src]="logoPath" alt="logo" width="200px" class="margin-logo"/>
+<div class="w-400 margin-form">
+  <div class="border-form h-350">
+    <p class="text-center mt-1 font-size-lg">Connectez-vous</p>
+
+    <div>
+      <mat-form-field appearance="fill"  class="margin-input">
+        <input matInput type="email" placeholder="Identifiant" class="input-size" [(ngModel)]="login">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill" class="margin-input">
+        <input matInput type="password" placeholder="Mot de passe" class="input-size" [(ngModel)]="password">
+      </mat-form-field>
+
+      <a href="/connexion" class="margin-input font-size-s"> Mot de passe oublié?</a>
+      <button (click)="submit()" mat-raised-button color="primary" class="margin-center mt-1">
+        Se connecter
+      </button>
+    </div>
+  </div>
+  <div class="border-form h-100 mt-1">
+    <p class="text-center mt-1 font-size-lg">Vous n'avez pas encore de compte? </p>
+    <a href="/inscription" class="margin-center font-size-s"> Inscrivez-vous ici</a>
+  </div>
+</div>

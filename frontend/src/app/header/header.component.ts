@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ConnexionService} from "../connexion.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  logoPath: any;
+
+  constructor(public connexionService: ConnexionService, public router: Router) { }
 
   ngOnInit(): void {
+    this.logoPath = "../../assets/images/util/logo.png";
+  }
+
+  logout(): void{
+    this.connexionService.logout().subscribe(
+      () => {
+        this.router.navigate(['/connexion'])
+      },
+      (error) => {
+      }
+    );
   }
 
 }
