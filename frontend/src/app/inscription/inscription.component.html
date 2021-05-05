@@ -1,1 +1,47 @@
-<p>inscription works!</p>
+<img [src]="logoPath" alt="logo" width="200px" class="margin-logo"/>
+<div class="w-400 margin-form">
+  <div class="border-form h-600">
+    <p class="text-center mt-1 font-size-lg">Inscription</p>
+
+      <mat-radio-group appearance="fill"  class="margin-input" [(ngModel)]="clientGender">
+          <mat-radio-button value="Femme">Femme</mat-radio-button>
+          <mat-radio-button value="Homme">Homme</mat-radio-button>
+      </mat-radio-group>
+      <br><br>
+      <mat-form-field appearance="fill" class="margin-input">
+        <mat-label>Entrez votre nom :</mat-label>
+        <input matInput placeholder="Nom" class="input-size" [(ngModel)]="clientFname">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill" class="margin-input">
+        <mat-label>Entrez votre prénom :</mat-label>
+        <input matInput placeholder="Prénom" class="input-size" [(ngModel)]="clientLname">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill"  class="margin-input">
+        <mat-label>Entrez votre adresse email :</mat-label>
+        <input matInput type="email" placeholder="Email" class="input-size" [(ngModel)]="clientEmail">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill" class="margin-input">
+        <mat-label>Entrez votre mot de passe :</mat-label>
+        <input matInput type="password" placeholder="Mot de passe" class="input-size" [(ngModel)]="clientMdp">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill" class="margin-input">
+        <mat-label>Saisissez votre date de naissance :</mat-label>
+        <input matInput placeholder="Date de naissance" [matDatepicker]="datepicker" [(ngModel)]="clientBirthday">
+        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+        <mat-datepicker #datepicker>
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>Cancel</button>
+            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
+      </mat-form-field>
+
+      <button (click)="addNote()" mat-raised-button color="primary" class="margin-center mt-1">
+        Confirmer
+      </button>
+  </div>
+</div>
