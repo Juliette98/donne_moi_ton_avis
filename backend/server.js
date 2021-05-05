@@ -5,7 +5,7 @@ var cors = require('cors');
 var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const User = require('./models/user');
-mongoose.connect('mongodb+srv://noteapp:noteapp@cluster0.dzqqp.mongodb.net/noteapp?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://donne_ton_avis:donne_ton_avis@cluster0.dzqqp.mongodb.net/donne_ton_avis?retryWrites=true&w=majority')
     .then(() =>{
         console.log("Successfully connected to DB!");
     })
@@ -56,5 +56,22 @@ app.get('/islogged', (request, response) => {
         response.status(200).json({login: user.login, fullName: user.fullName});
     })
 })
+
+//POST /client
+app.post('/register', (request, response) =>{
+    let requestUser = request.body;
+    let newUser = new User({
+        gender: requestUser.clientGender,
+        fname: requestUser.clientFname,
+        lname: requestUser.clientLname,
+        login: requestUser.clientEmail,
+        password: requestUser.clientMdp,
+        birthday: requestUser.clientBirthday
+    }).save((error, client, err = null) => {
+        if (error) return console.error(err);
+        console.log(client);
+        response.json(client);
+    })
+});
 
 app.listen(3000, ()=>{console.log("Listening on port 3000")});
