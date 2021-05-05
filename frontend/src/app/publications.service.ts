@@ -1,55 +1,42 @@
 import { Injectable } from '@angular/core';
 import {Publication} from "./models/publication";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class PublicationsService {
 
-  pubTitle = '';
-  pubDescription = '';
+  publications: Array<Publication> = new Array<Publication>();
+  constructor(private http: HttpClient) { }
 
-  publications: Array<any> = new Array<any>();
-
-  constructor() { }
-
-  ngOnInit(): void {
+  getPublications(): any{
+    return this.http.get('http://localhost:3000/publications/');
   }
 
-  addPublication(){
-    const publication: Publication = new Publication();
-    publication.id = Math.random(),
-      publication.pubTitle = this.pubTitle,
-      publication.pubDescription = this.pubDescription,
+  addPublication(publication: Publication): any{
+    return this.http.post('http://localhost:3000/publications/', publication);
+  }
 
-      this.pubTitle = '';
-    this.pubDescription = '';
+  deletePublication(pubId: any): Observable<any>{
+    return this.http.delete('http://localhost:3000/publications/' + pubId);
+  }
 
+  getPublication(pubId: any): Observable<any>{
+    console.log(pubId);
+    return this.http.get('http://localhost:3000/publications/' + pubId);
+  }
 
+  savePublication(publication: Publication): void{
+    const index = this.publications.indexOf(publication);
+    this.publications.splice(index, 1);
     this.publications.push(publication);
   }
 
-  deletePublication(publication:any):void{
-    var index = this.publications.indexOf(publication);
-    this.publications.splice(index,1);
+  updatePublication(publication: Publication): Observable<any>{
+    return this.http.put('http://localhost:3000/publications/' + publication.id, publication);
   }
-
-  getPublication(pubId:number):Publication{
-    for(let i=0; i<this.publications.length; i++){
-      var publication = this.publications[i];
-      if(publication.id == pubId){
-        return publication;
-      }
-    }
-    return null as any;
-  }
-
-  savePublication(publication:Publication):void{
-    var index = this.publications.indexOf(publication);
-    this.publications.splice(index,1);
-    this.publications.push(publication);
-  }
-
-
-
 }

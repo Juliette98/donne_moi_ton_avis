@@ -1,3 +1,5 @@
+//import {Publication} from "../frontend/src/app/models/publication";
+
 const express = require('express');
 const session = require('express-session');
 const app = express();
@@ -5,7 +7,10 @@ var cors = require('cors');
 var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const User = require('./models/user');
-mongoose.connect('mongodb+srv://noteapp:noteapp@cluster0.dzqqp.mongodb.net/noteapp?retryWrites=true&w=majority')
+const Publication = require('./models/publication');
+
+
+mongoose.connect('mongodb+srv://noteapp:noteapp@cluster0.dzqqp.mongodb.net/publications?retryWrites=true&w=majority')
     .then(() =>{
         console.log("Successfully connected to DB!");
     })
@@ -26,6 +31,25 @@ app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(session({secret:"mySecretKey", cookie:{maxAge: 24 * 60 *60 * 1000}}));
+
+//GET /publications
+app.get('/publications', (request, response) =>{
+    Publication.find((error, publications) => {
+        if (error) return console.error(err);
+        response.json(publications);
+    });
+});
+
+//GET /publications/:id
+app.get('/publications/:id', (request, response) =>{
+    console.log(request.params.id);
+    Publication.findOne( { _id: request.params.id }, (error, publication) => {
+        if (error) {
+            return response.status(404).json({error: error});
+        }
+        response.status(200).json(publication);
+    });
+});
 
 
 //login
