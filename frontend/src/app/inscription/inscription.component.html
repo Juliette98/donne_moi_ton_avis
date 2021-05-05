@@ -1,36 +1,35 @@
 <img [src]="logoPath" alt="logo" width="200px" class="margin-logo"/>
 <div class="w-400 margin-form">
   <div class="border-form h-600">
-    <p class="text-center mt-1 font-size-lg">Inscription</p>
-
-      <mat-radio-group appearance="fill"  class="margin-input" [(ngModel)]="clientGender">
+    <p class="text-center mt-1 mb-8 font-size-lg">Inscription</p>
+      <mat-radio-group class="margin-input" [(ngModel)]="gender" required>
           <mat-radio-button value="Femme">Femme</mat-radio-button>
           <mat-radio-button value="Homme">Homme</mat-radio-button>
       </mat-radio-group>
-      <br><br>
+      <br> <br>
       <mat-form-field appearance="fill" class="margin-input">
-        <mat-label>Entrez votre nom :</mat-label>
-        <input matInput placeholder="Nom" class="input-size" [(ngModel)]="clientFname">
+        <mat-label>Entrez votre prénom</mat-label>
+        <input matInput placeholder="Toto" class="input-size" [(ngModel)]="fname" required>
       </mat-form-field>
       <br>
       <mat-form-field appearance="fill" class="margin-input">
-        <mat-label>Entrez votre prénom :</mat-label>
-        <input matInput placeholder="Prénom" class="input-size" [(ngModel)]="clientLname">
+        <mat-label>Entrez votre nom</mat-label>
+        <input matInput placeholder="Dupond" class="input-size" [(ngModel)]="lname" required>
       </mat-form-field>
       <br>
       <mat-form-field appearance="fill"  class="margin-input">
-        <mat-label>Entrez votre adresse email :</mat-label>
-        <input matInput type="email" placeholder="Email" class="input-size" [(ngModel)]="clientEmail">
+        <mat-label>Entrez une adresse email</mat-label>
+        <input matInput type="email" placeholder="toto.dupond@gmail.com" class="input-size" [(ngModel)]="login" required>
       </mat-form-field>
       <br>
       <mat-form-field appearance="fill" class="margin-input">
-        <mat-label>Entrez votre mot de passe :</mat-label>
-        <input matInput type="password" placeholder="Mot de passe" class="input-size" [(ngModel)]="clientMdp">
+        <mat-label>Entrez votre mot de passe</mat-label>
+        <input matInput type="password" placeholder="*****" class="input-size" [(ngModel)]="password" required>
       </mat-form-field>
       <br>
-      <mat-form-field appearance="fill" class="margin-input">
-        <mat-label>Saisissez votre date de naissance :</mat-label>
-        <input matInput placeholder="Date de naissance" [matDatepicker]="datepicker" [(ngModel)]="clientBirthday">
+      <mat-form-field appearance="fill" class="margin-input w-52">
+        <mat-label>Entrez votre date de naissance</mat-label>
+        <input matInput placeholder="Date de naissance" [matDatepicker]="datepicker" [(ngModel)]="birthday" required>
         <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
         <mat-datepicker #datepicker>
           <mat-datepicker-actions>
@@ -39,9 +38,12 @@
           </mat-datepicker-actions>
         </mat-datepicker>
       </mat-form-field>
-
-      <button (click)="addNote()" mat-raised-button color="primary" class="margin-center mt-1">
+      <button (click)="register()" mat-raised-button color="primary" class="margin-center mt-1">
         Confirmer
       </button>
+  </div>
+  <div class="border-form h-100 mt-1 mb-8">
+    <p class="text-center mt-1 font-size-lg">Vous possédez déjà compte? </p>
+    <a href="/connexion" class="margin-center font-size-s"> Connectez-vous ici</a>
   </div>
 </div>

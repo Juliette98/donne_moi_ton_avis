@@ -17,7 +17,9 @@ export class PublicationsService {
     return this.http.get('http://localhost:3000/publications/');
   }
 
-  addPublication(publication: Publication): any{
+  addPublication(publication: Publication): Observable<any>{
+    const imagePath = '../assets/images/uploads';
+    const formData: FormData = new FormData();
     return this.http.post('http://localhost:3000/publications/', publication);
   }
 
@@ -37,6 +39,6 @@ export class PublicationsService {
   }
 
   updatePublication(publication: Publication): Observable<any>{
-    return this.http.put('http://localhost:3000/publications/' + publication.id, publication);
+    return this.http.put('http://localhost:3000/publications/' + publication._id, publication);
   }
 }

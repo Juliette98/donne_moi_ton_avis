@@ -6,11 +6,12 @@
       Déposer un avis
     </button>
     <mat-icon routerLink="/accueil" class="font-size-45 align-vertical-sub mr-50">home</mat-icon>
-    <button mat-button [matMenuTriggerFor]="menu" class="mr-50">
+    <button mat-button [matMenuTriggerFor]="menu">
       <mat-icon class="font-size-45 align-vertical-sub">account_circle</mat-icon>
     </button>
-    <span *ngIf="connexionService.connectedUser">{{connexionService.connectedUser.fullName}}</span>
-
+    <span *ngIf="connexionService.connectedUser" mat-button [matMenuTriggerFor]="menu">
+      {{connexionService.connectedUser.fname | titlecase}} {{connexionService.connectedUser.lname | titlecase}}
+    </span>
     <mat-menu #menu="matMenu">
       <button mat-menu-item>Profil</button>
       <button mat-menu-item>Favoris</button>

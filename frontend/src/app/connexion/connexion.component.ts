@@ -24,7 +24,6 @@ export class ConnexionComponent implements OnInit {
       (userInfo: any) => {
         this.connexionService.connectedUser = userInfo;
         this.router.navigate(['/accueil'])
-
       },
       (error) => {
         console.log('error', error);

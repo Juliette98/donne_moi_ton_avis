@@ -5,6 +5,8 @@ var cors = require('cors');
 var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const User = require('./models/user');
+const Publication = require('./models/publication');
+
 mongoose.connect('mongodb+srv://donne_ton_avis:donne_ton_avis@cluster0.dzqqp.mongodb.net/donne_ton_avis?retryWrites=true&w=majority')
     .then(() =>{
         console.log("Successfully connected to DB!");
@@ -28,17 +30,17 @@ app.use(bodyParser.json());
 app.use(session({secret:"mySecretKey", cookie:{maxAge: 24 * 60 *60 * 1000}}));
 
 
-//login
+//Pour la connexion
 app.post('/login', (request, response) => {
     User.findOne({login: request.body.login, password: request.body.password }, (error, user) => {
-        if (error) return response.status(401).json({msg: 'Error'});
-        if (!user) return response.status(401).json({msg: 'Wrong login' });
+        if (error) return response.status(401).json({msg: "Erreur: " + error.msg});
+        if (!user) return response.status(401).json({msg: "Pas d'utilisateur trouvé" });
         request.session.userId = user._id;
-        response.status(200).json({login: user.login, fullName: user.fullName});
+         response.status(200).json({login: user.login, fname: user.fname, lname: user.lname});
     });
 });
 
-//logout
+// Pour la connexion
 app.get('/logout', (request, response) => {
     request.session.destroy(error => {
         if(error) return response.status(409).json({msg: 'error'});
@@ -46,31 +48,50 @@ app.get('/logout', (request, response) => {
     })
 })
 
+// Teste si un utilisateur est connecté
 app.get('/islogged', (request, response) => {
     if(!request.session.userId) return response.status(401).json();
 
     User.findOne({_id: request.session.userId}, (error, user) => {
-        if (error) return response.status(401).json({msg:'Error'});
-        if (!user) return response.status(401).json({msg:'Error'});
+        if (error) return response.status(401).json({msg:'Erreur: ' . error.msg});
+        if (!user) return response.status(401).json({msg:'Aucun utilisateur connecté'});
         request.session.userId = user._id;
-        response.status(200).json({login: user.login, fullName: user.fullName});
+        response.status(200).json({login: user.login, fname: user.fname, lname: user.lname});
     })
 })
 
-//POST /client
+//Pour l'inscription
 app.post('/register', (request, response) =>{
     let requestUser = request.body;
     let newUser = new User({
-        gender: requestUser.clientGender,
-        fname: requestUser.clientFname,
-        lname: requestUser.clientLname,
-        login: requestUser.clientEmail,
-        password: requestUser.clientMdp,
-        birthday: requestUser.clientBirthday
+        gender: requestUser.gender,
+        fname: requestUser.fname,
+        lname: requestUser.lname,
+        login: requestUser.login,
+        password: requestUser.password,
+        birthday: requestUser.birthday
     }).save((error, client, err = null) => {
         if (error) return console.error(err);
         console.log(client);
         response.json(client);
+    })
+});
+
+//Pour créer une publication
+app.post('/publications', (request, response) =>{
+    let publication = request.body;
+    let newPub = new Publication({
+        pubTitle: publication.pubTitle,
+        pubRef: publication.pubRef,
+        pubDescription: publication.pubDescription,
+        pubPrice: publication.pubPrice,
+        pubStore: publication.pubStore,
+        pubLink: publication.pubLink,
+    });
+    newPub.save((error, pub) => {
+        if (error) return console.error(err);
+        console.log(pub);
+        response.json(pub);
     })
 });
 

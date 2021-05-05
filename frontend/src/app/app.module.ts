@@ -25,6 +25,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMatFileInputModule
   ],
   exports: [ MatFormFieldModule, MatInputModule ],
   providers: [],

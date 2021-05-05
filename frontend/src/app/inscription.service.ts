@@ -6,13 +6,11 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class InscriptionService {
-  registeredClient: any = null;
   constructor(private http: HttpClient) {
   }
 
-  addClient(clientGender: any, clientFname: any, clientLname: any, clientEmail: any, clientMdp: any, clientBirthday: any): Observable<any>{
-    return this.http.post('http://localhost:3000/register',{clientGender, clientFname, clientLname, clientEmail, clientMdp, clientBirthday}, {withCredentials: true});
+  register(gender: any, fname: any, lname: any, login: any, password: any, birthday: any): Observable<any>{
+    return this.http.post('http://localhost:3000/register',{gender, fname, lname, login, password, birthday}, {withCredentials: true});
   }
-
 
 }

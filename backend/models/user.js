@@ -6,7 +6,7 @@ const loginSchema = mongoose.Schema({
     gender: { type: String, required: true },
     fname: { type: String, required: true },
     lname: { type: String, required: true },
-    birthday: { type: String, required: true }
+    birthday: { type: Date, required: true }
 });
 
 module.exports = mongoose.model('User', loginSchema);

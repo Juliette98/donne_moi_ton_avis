@@ -5,11 +5,13 @@
 
     <div>
       <mat-form-field appearance="fill"  class="margin-input">
-        <input matInput type="email" placeholder="Identifiant" class="input-size" [(ngModel)]="login">
+        <mat-label>Identifiant</mat-label>
+        <input matInput type="email" placeholder="toto@gmail.com" class="input-size" [(ngModel)]="login" required>
       </mat-form-field>
       <br>
       <mat-form-field appearance="fill" class="margin-input">
-        <input matInput type="password" placeholder="Mot de passe" class="input-size" [(ngModel)]="password">
+        <mat-label>Mot de passe</mat-label>
+        <input matInput type="password" placeholder="*******" class="input-size" [(ngModel)]="password" required>
       </mat-form-field>
 
       <a href="/connexion" class="margin-input font-size-s"> Mot de passe oublié?</a>

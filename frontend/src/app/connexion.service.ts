@@ -25,7 +25,6 @@ export class ConnexionService {
     this.http.get('http://localhost:3000/islogged', { withCredentials: true}).subscribe(
       (connectedUser) => {
         this.connectedUser = connectedUser;
-        console.log(this.connectedUser);
         console.log('connected ');
       },
       (error) => {
