@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   constructor(public connexionService: ConnexionService, public router: Router) { }
 
   ngOnInit(): void {
-    this.logoPath = "../../assets/images/util/logo.png";
+    this.logoPath = "../../assets/images/util/logo-header.png";
   }
 
   logout(): void{

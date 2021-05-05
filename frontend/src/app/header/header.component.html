@@ -8,8 +8,9 @@
     <mat-icon routerLink="/accueil" class="font-size-45 align-vertical-sub mr-50">home</mat-icon>
     <button mat-button [matMenuTriggerFor]="menu" class="mr-50">
       <mat-icon class="font-size-45 align-vertical-sub">account_circle</mat-icon>
-      <span *ngIf="connexionService.connectedUser">{{connexionService.connectedUser.fullName}}</span>
     </button>
+    <span *ngIf="connexionService.connectedUser">{{connexionService.connectedUser.fullName}}</span>
+
     <mat-menu #menu="matMenu">
       <button mat-menu-item>Profil</button>
       <button mat-menu-item>Favoris</button>
