@@ -1,3 +1,49 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
-(Publication)
+<mat-card class="publication" *ngIf="pubStatus === 'view'">
+  <mat-card-header>
+    <mat-card-title>{{publication.pubTitle}}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="text">
+    <p> {{publication.pubDescription}}</p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button class="delete" (click)="deletePublicationEvent()" mat-raised-button color="accent">Delete</button>
+    <button class="edit" (click)="editPublicationEvent()" mat-button>Edit</button>
+    <button class="edit" mat-button (click)="pubStatus='edit'">In-page edit</button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card class="note" *ngIf="pubStatus === 'edit'">
+  <mat-card-content class="text">
+    <mat-form-field>
+      <mat-label>Publication title</mat-label>
+      <input matInput placeholder="Your title" [(ngModel)]="publication.pubTitle">
+    </mat-form-field>
+    <br/>
+    <mat-form-field>
+      <mat-label>Publication text</mat-label>
+      <textarea matInput placeholder="Your text" [(ngModel)]="publication.pubDescription"></textarea>
+    </mat-form-field>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button class="delete" (click)="deletePublicationEvent()" mat-raised-button color="accent">Delete</button>
+    <button class="update" (click)="updatePublication()" mat-raised-button color="primary">Save</button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card class="publication error" *ngIf="pubStatus === 'error'" style="background: red; color: white;">
+  <mat-card-header>
+    Edit error, please try again
+  </mat-card-header>
+
+  <mat-card-actions>
+    <button class="ok" (click)="pubStatus='edit'" mat-raised-button color="warn">Ok</button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card class="note loading" *ngIf="pubStatus === 'loading'">
+  <mat-card-header> Loading ... </mat-card-header>
+</mat-card>
+

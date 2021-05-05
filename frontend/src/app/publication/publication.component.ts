@@ -11,23 +11,41 @@ import {PublicationsService} from "../publications.service";
 })
 export class PublicationComponent implements OnInit {
 
-  id: number = 0;
-  publication: Publication = {id:0, pubTitle:"", pubDescription:""};
-
-
+  id:any;
+  publication: Publication = new Publication;
 
   constructor(private route: ActivatedRoute, private router: Router, public publicationsService: PublicationsService){
   }
 
   ngOnInit(): void {
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
-    this.publication = this.publicationsService.getPublication(this.id);
-
+    this.id = this.route.snapshot.paramMap.get('id');
+    // @ts-ignore
+    this.publication = {pubTitleTitle: '', pubDescription: ''};
+    console.log('"id from comp' + this.id);
+    this.publicationsService.getPublication(this.id).subscribe(
+      (publication: Publication) => {
+        this.publication = publication;
+      },
+      (error) => {
+        console.log('Error');
+      }
+    );
   }
 
-  savePublication():void{
+  savePublication(): void{
     this.publicationsService.savePublication(this.publication);
-    this.router.navigate(["/publications"])
+    this.router.navigate(['/notes']);
+  }
+
+  updatePublication(): void{
+    this.publicationsService.updatePublication(this.publication).subscribe(
+      (publication: Publication) => {
+        this.router.navigate(['/publications']);
+      },
+      (error) => {
+        console.log('Error d update de publication');
+      }
+    );
   }
 
 }
