@@ -9,8 +9,14 @@
     <mat-icon class="font-size-25">settings</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="editPublicationEvent()">Modifier</button>
-    <button mat-menu-item (click)="deletePublicationEvent()">Supprimer</button>
+    <button mat-menu-item (click)="editPublicationEvent()">
+      <mat-icon class="icon">edit</mat-icon>
+      Modifier
+    </button>
+    <button mat-menu-item (click)="deletePublicationEvent()">
+      <mat-icon class="icon">delete</mat-icon>
+      Supprimer
+    </button>
   </mat-menu>
 
   <span class="pub-ref" *ngIf="publication.pubRef">Référence: {{publication.pubRef}}</span>

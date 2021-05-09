@@ -30,7 +30,15 @@ export class AccueilComponent implements OnInit {
   }
 
   deletePublication(publication: Publication): void{
-
+    this.publicationService.deletePublication(publication._id).subscribe(
+      () => {
+        const index = this.publications.indexOf(publication);
+        this.publications.splice(index, 1);
+      },
+      () => {
+        console.log('Erreur lors de la suppression');
+      }
+    )
   }
 
   editPublication(publication: Publication): void{

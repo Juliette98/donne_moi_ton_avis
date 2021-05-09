@@ -114,4 +114,13 @@ app.get('/publication/:id', (request, response) =>{
     });
 });
 
+
+//Suppression d'une publication
+app.delete('/publication/:id', (request, response) =>{
+    Publication.deleteOne({_id: request.params.id}, (error) => {
+        if (error) return response.status(400).json({error:error});
+        response.status(201).json({msg:'ok'});
+    });
+});
+
 app.listen(3000, ()=>{console.log("Listening on port 3000")});

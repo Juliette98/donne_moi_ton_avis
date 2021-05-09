@@ -24,7 +24,7 @@ export class PublicationsService {
   }
 
   deletePublication(pubId: any): Observable<any>{
-    return this.http.delete('http://localhost:3000/publications/' + pubId);
+    return this.http.delete('http://localhost:3000/publication/' + pubId);
   }
 
   getPublication(pubId: any): Observable<any>{
