@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {PublicationsService} from "../publications.service";
 import {Router} from "@angular/router";
 import {Publication} from "../models/publication";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-creation-publication',
@@ -17,15 +18,23 @@ export class CreationPublicationComponent implements OnInit {
   size: string = "";
   store: string = "";
   link: string = "";
-  image: File | null | undefined;
+  image: any;
+  imageControl: FormControl = new FormControl();
 
-  constructor(public publicationService : PublicationsService, public router: Router) { }
-
-  ngOnInit(): void {
+  constructor(public publicationService : PublicationsService, public router: Router) {
+    //Initialisation du formControl
+    this.imageControl = new FormControl(this.image, []);
   }
 
-  handleFileInput(files: FileList) {
-    this.image = files.item(0);
+  ngOnInit(): void {
+    //Récupération de l'image au chargement
+    this.imageControl.valueChanges.subscribe((files: any) => {
+      if (!Array.isArray(files)) {
+        this.image = [files];
+      } else {
+        this.image = files;
+      }
+    })
   }
 
   addPublication(): void{
@@ -37,8 +46,8 @@ export class CreationPublicationComponent implements OnInit {
     publication.pubSize = this.size;
     publication.pubStore = this.store;
     publication.pubLink = this.link;
-    publication.pubImage = this.image;
-    this.publicationService.addPublication(publication).subscribe(
+    publication.pubImage = this.image[0].name;
+    this.publicationService.addPublication(publication, this.image[0]).subscribe(
       () => {
         console.log("Creation ok");
         this.router.navigate(["/accueil"]);

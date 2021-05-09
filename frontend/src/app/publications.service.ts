@@ -3,8 +3,6 @@ import {Publication} from "./models/publication";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -17,10 +15,12 @@ export class PublicationsService {
     return this.http.get('http://localhost:3000/publications');
   }
 
-  addPublication(publication: Publication): Observable<any>{
-    const imagePath = '../assets/images/uploads';
-    const formData: FormData = new FormData();
-    return this.http.post('http://localhost:3000/publications/', publication);
+  addPublication(publication: Publication, image: any): Observable<any>{
+    const formData = new FormData();
+    formData.append('image', image, image.name);
+    //Enregistre d'abor l'image
+    this.http.post('http://localhost:3000/upload', formData)
+    return this.http.post('http://localhost:3000/publication',  publication);
   }
 
   deletePublication(pubId: any): Observable<any>{
@@ -31,17 +31,7 @@ export class PublicationsService {
     return this.http.get('http://localhost:3000/publication/' + pubId);
   }
 
-  /*savePublication(publication: Publication | undefined): void{
-    if (publication instanceof Publication) {
-      const index = this.publications.indexOf(publication);
-    }
-    this.publications.splice(index, 1);
-    if (publication instanceof Publication) {
-      this.publications.push(publication);
-    }
-  }*/
-
-  /*updatePublication(publication: Publication | undefined): Observable<any>{
-    return this.http.put('http://localhost:3000/publications/' + publication._id, publication);
-  }*/
+  updatePublication(publication: Publication ): Observable<any>{
+    return this.http.put('http://localhost:3000/publication/' + publication._id, publication);
+  }
 }

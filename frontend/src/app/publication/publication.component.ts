@@ -20,7 +20,7 @@ export class PublicationComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     this.publication = {_id: 0, pubTitle: '', pubRef: '', pubDescription: '', pubPrice: 0,
-      pubSize: '', pubStore: '', pubLink: '', pubImage: null};
+      pubSize: '', pubStore: '', pubLink: '', pubImage: ''};
     console.log('"id from comp' + this.id);
     this.publicationsService.getPublication(this.id).subscribe(
       (publication: Publication) => {
@@ -36,17 +36,17 @@ export class PublicationComponent implements OnInit {
   /*savePublication(): void{
     this.publicationsService.savePublication(this.publication);
     this.router.navigate(['/notes']);
-  }
+  }*/
 
   updatePublication(): void{
     this.publicationsService.updatePublication(this.publication).subscribe(
-      (publication: Publication) => {
-        this.router.navigate(['/publications']);
+      () => {
+        this.router.navigate(['/accueil']);
       },
       (error) => {
-        console.log('Error d update de publication');
+        console.log('Error lors de la mise à jour de la publication');
       }
     );
-  }*/
+  }
 
 }

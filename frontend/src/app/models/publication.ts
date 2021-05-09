@@ -7,5 +7,5 @@ export class Publication {
   pubSize: string | undefined;
   pubStore: string | undefined;
   pubLink: string | undefined;
-  pubImage: File | null | undefined;
+  pubImage: string | undefined;
 }

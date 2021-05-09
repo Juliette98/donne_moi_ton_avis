@@ -6,8 +6,9 @@ const publicationSchema = mongoose.Schema({
     pubDescription: { type: String, required: true },
     pubPrice: { type: Number, required: false },
     pubStore: { type: String, required: true },
-    pubSize: { type: String, required: true },
+    pubSize: { type: String, required: false },
     pubLink: { type: String, required: false },
+    pubImage: { type: String, required: false },
 });
 
 module.exports = mongoose.model('publications', publicationSchema);
