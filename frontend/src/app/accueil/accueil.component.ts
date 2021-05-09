@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PublicationsService} from "../publications.service";
 
 @Component({
   selector: 'app-accueil',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccueilComponent implements OnInit {
 
-  constructor() { }
+  publications: any;
+
+  constructor(public publicationService: PublicationsService) { }
 
   ngOnInit(): void {
+    this.getNotes()
+  }
+
+  getNotes(): void{
+    this.publicationService.getPublications().subscribe(
+      (publications: any) =>{
+        this.publications = publications;
+      },
+      () => {
+        console.log('Error');
+      }
+    );
   }
 
 }

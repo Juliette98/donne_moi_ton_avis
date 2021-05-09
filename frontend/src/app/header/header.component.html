@@ -5,11 +5,13 @@
       <mat-icon>add_box</mat-icon>
       Déposer un avis
     </button>
-    <mat-icon routerLink="/accueil" class="font-size-45 align-vertical-sub mr-50">home</mat-icon>
-    <button mat-button [matMenuTriggerFor]="menu">
-      <mat-icon class="font-size-45 align-vertical-sub">account_circle</mat-icon>
+    <button mat-button routerLink="/accueil">
+      <mat-icon class="font-size-45 align-vertical-sub mr-50">home</mat-icon>
     </button>
-    <span *ngIf="connexionService.connectedUser" mat-button [matMenuTriggerFor]="menu">
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon class="font-size-45 align-vertical-sub mr-10">account_circle</mat-icon>
+    </button>
+    <span *ngIf="connexionService.connectedUser" mat-button [matMenuTriggerFor]="menu" >
       {{connexionService.connectedUser.fname | titlecase}} {{connexionService.connectedUser.lname | titlecase}}
     </span>
     <mat-menu #menu="matMenu">

@@ -42,5 +42,4 @@ export class PublicationBlockComponent implements OnInit {
   }
 }
 
-export class CreationPublicationComponent {
-}
+

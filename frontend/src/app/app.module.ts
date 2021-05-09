@@ -26,6 +26,8 @@ import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxMatFileInputModule } from "@angular-material-components/file-input";
+import { MatSliderModule } from "@angular/material/slider";
+import { MatExpansionModule } from "@angular/material/expansion";
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { NgxMatFileInputModule } from "@angular-material-components/file-input";
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    NgxMatFileInputModule
+    NgxMatFileInputModule,
+    MatSliderModule,
+    MatExpansionModule
   ],
   exports: [ MatFormFieldModule, MatInputModule ],
   providers: [],

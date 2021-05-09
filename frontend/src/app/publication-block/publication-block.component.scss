@@ -1,0 +1,62 @@
+.publication-card{
+  width: 90%;
+  margin: 4% 4%;
+}
+
+.pub-image{
+  max-width: 25%;
+  display: inline;
+  max-height: 350px;
+}
+
+.pub-title{
+  position: absolute;
+  margin-left: 5%;
+  font-size: 25px;
+  font-weight: 400;
+}
+
+.button-store{
+  position: absolute;
+  margin-left: 63%;
+}
+
+.font-size-25{
+  font-size: 25px;
+}
+
+.setting{
+  position: absolute;
+  margin-left: 70%;
+}
+
+.pub-ref{
+  position: absolute;
+  margin: 3% 5%;
+  font-weight: 300;
+}
+
+.pub-description{
+  position: absolute;
+  max-width: 57%;
+  margin: 7% 5%;
+  text-align: justify;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.pub-info{
+  position: absolute;
+  margin: 20% 5%;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.pub-author{
+  margin-left: 85%;
+}
+
+.author-name{
+  position: absolute;
+  margin: 0.2% 0.5%;
+}

@@ -87,12 +87,21 @@ app.post('/publications', (request, response) =>{
         pubPrice: publication.pubPrice,
         pubStore: publication.pubStore,
         pubLink: publication.pubLink,
+        pubSize: publication.pubSize,
     });
     newPub.save((error, pub) => {
-        if (error) return console.error(err);
+        if (error) return console.error(error);
         console.log(pub);
         response.json(pub);
     })
+});
+
+// Recherche de toutes les publications
+app.get('/publications', (request, response) =>{
+    Publication.find((error, publications) => {
+        if (error) return console.error(err);
+        response.json(publications);
+    });
 });
 
 app.listen(3000, ()=>{console.log("Listening on port 3000")});

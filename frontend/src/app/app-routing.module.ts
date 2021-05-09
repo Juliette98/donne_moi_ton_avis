@@ -7,7 +7,7 @@ import {CreationPublicationComponent} from "./creation-publication/creation-publ
 import {PublicationComponent} from "./publication/publication.component";
 
 const routes: Routes = [
-  {path: '', component:AccueilComponent},
+  {path: '', component:ConnexionComponent},
   {path: 'accueil', component:AccueilComponent},
   {path: 'connexion', component:ConnexionComponent},
   {path: 'inscription', component:InscriptionComponent},

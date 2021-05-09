@@ -1,4 +1,36 @@
-<mat-card class="publication" *ngIf="pubStatus === 'view'">
+<mat-card class="publication-card">
+  <img mat-card-image src="https://www.etam.com/dw/image/v2/AAWW_PRD/on/demandware.static/-/Sites-EPAP-master/default/dw7bf2bcc1/652081121_x.jpg?sw=600&sh=710" alt="Photo of a Shiba Inu" class="pub-image">
+  <span class="pub-title">{{publication.pubTitle}}</span>
+  <button mat-raised-button color="accent" class="button-store"
+          matBadge="8" matBadgePosition="before" matBadgeColor="accent">
+    {{publication.pubStore}}
+  </button>
+  <button mat-button [matMenuTriggerFor]="menu" class="setting">
+    <mat-icon class="font-size-25">settings</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Modifier</button>
+    <button mat-menu-item>Supprimer</button>
+  </mat-menu>
+
+  <span class="pub-ref">Référence: {{publication.pubRef}}</span>
+
+  <span class="pub-description">
+    {{publication.pubDescription}}
+  </span>
+
+  <span class="pub-info">
+    {{publication.pubPrice}}€ | Taille {{publication.pubSize}}
+  </span>
+
+  <div class="pub-author">
+    <mat-icon class="font-size-25">account_circle</mat-icon>
+    <span class="author-name">Juliette Rasoarilala</span>
+  </div>
+
+</mat-card>
+
+<!--mat-card class="publication" *ngIf="pubStatus === 'view'">
   <mat-card-header>
     <mat-card-title>{{publication.pubTitle}}</mat-card-title>
   </mat-card-header>
@@ -45,5 +77,5 @@
 
 <mat-card class="note loading" *ngIf="pubStatus === 'loading'">
   <mat-card-header> Loading ... </mat-card-header>
-</mat-card>
+</mat-card-->
 

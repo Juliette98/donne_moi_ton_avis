@@ -14,7 +14,7 @@ export class PublicationsService {
   constructor(private http: HttpClient) { }
 
   getPublications(): any{
-    return this.http.get('http://localhost:3000/publications/');
+    return this.http.get('http://localhost:3000/publications');
   }
 
   addPublication(publication: Publication): Observable<any>{
