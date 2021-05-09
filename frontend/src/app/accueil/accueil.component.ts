@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PublicationsService} from "../publications.service";
+import {Publication} from "../models/publication";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-accueil',
@@ -10,7 +12,7 @@ export class AccueilComponent implements OnInit {
 
   publications: any;
 
-  constructor(public publicationService: PublicationsService) { }
+  constructor(public publicationService: PublicationsService, public router: Router) { }
 
   ngOnInit(): void {
     this.getNotes()
@@ -25,6 +27,14 @@ export class AccueilComponent implements OnInit {
         console.log('Error');
       }
     );
+  }
+
+  deletePublication(publication: Publication): void{
+
+  }
+
+  editPublication(publication: Publication): void{
+    this.router.navigate(['/publication', publication._id]);
   }
 
 }

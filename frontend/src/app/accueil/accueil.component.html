@@ -41,6 +41,6 @@
     </div>
   </div>
   <div>
-    <app-publication-block *ngFor="let publication of publications" [publication]="publication"></app-publication-block>
+    <app-publication-block *ngFor="let publication of publications" [publication]="publication" (deletePublication)="deletePublication($event)" (editPublication)="editPublication($event)"></app-publication-block>
   </div>
 </div>

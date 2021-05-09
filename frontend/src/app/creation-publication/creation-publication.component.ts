@@ -19,7 +19,7 @@ export class CreationPublicationComponent implements OnInit {
   link: string = "";
   image: File | null | undefined;
 
-  constructor(/*public connexionService: ConnexionService, */ public publicationService : PublicationsService, public router: Router) { }
+  constructor(public publicationService : PublicationsService, public router: Router) { }
 
   ngOnInit(): void {
   }

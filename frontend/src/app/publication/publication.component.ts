@@ -12,19 +12,20 @@ import {PublicationsService} from "../publications.service";
 export class PublicationComponent implements OnInit {
 
   id:any;
-  publication: Publication = new Publication;
+  publication: Publication = new Publication();
 
   constructor(private route: ActivatedRoute, private router: Router, public publicationsService: PublicationsService){
   }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
-    // @ts-ignore
-    this.publication = {pubTitleTitle: '', pubDescription: ''};
+    this.publication = {_id: 0, pubTitle: '', pubRef: '', pubDescription: '', pubPrice: 0,
+      pubSize: '', pubStore: '', pubLink: '', pubImage: null};
     console.log('"id from comp' + this.id);
     this.publicationsService.getPublication(this.id).subscribe(
       (publication: Publication) => {
         this.publication = publication;
+
       },
       (error) => {
         console.log('Error');
@@ -32,7 +33,7 @@ export class PublicationComponent implements OnInit {
     );
   }
 
-  savePublication(): void{
+  /*savePublication(): void{
     this.publicationsService.savePublication(this.publication);
     this.router.navigate(['/notes']);
   }
@@ -46,6 +47,6 @@ export class PublicationComponent implements OnInit {
         console.log('Error d update de publication');
       }
     );
-  }
+  }*/
 
 }

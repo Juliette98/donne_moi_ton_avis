@@ -1,22 +1,64 @@
-<mat-card class="new-publication">
-  <mat-card-header>
-    <mat-card-title>Edit publication</mat-card-title>
-    <mat-card-subtitle>Please fill all fields</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <mat-form-field>
-      <mat-label>Publication title</mat-label>
-      <input matInput type="text" class="publication-title"[(ngModel)]="publication.pubTitle" placeholder="Publication Title"/>
-      <button mat-button *ngIf="publication.pubTitle" matSuffix mat-icon-button aria-label="Clear">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
-    <mat-form-field>
-      <textarea matInput [(ngModel)]="publication.pubDescription" placeholder="Publication Description Text"></textarea>
-    </mat-form-field>
-  </mat-card-content>
+<app-header></app-header>
+<div class="w-400 margin-form">
+  <div class="border-form h-680">
+    <p class="text-center mt-1 mb-8 font-size-lg">Modifier votre publication</p>
 
-  <mat-card-actions>
-    <button (click)="updatePublication()" mat-raised-button color="accent">Save</button>
-  </mat-card-actions>
-</mat-card>
+    <mat-form-field appearance="fill" class="margin-input">
+      <mat-label>Titre</mat-label>
+      <input matInput placeholder="Chemise jaune fluo" type="text" class="input-size" [(ngModel)]="publication.pubTitle" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="margin-input">
+      <mat-label>Réference</mat-label>
+      <input matInput placeholder="Ref0123456789" type="text" class="input-size" [(ngModel)]="publication.pubRef">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="margin-input">
+      <mat-label>Prix (en €)</mat-label>
+      <input matInput placeholder="40" type="number" class="input-size" [(ngModel)]="publication.pubPrice">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill" class="margin-input">
+      <mat-label>Taille</mat-label>
+      <input matInput placeholder="M" type="text" class="input-size" [(ngModel)]="publication.pubSize">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="margin-input">
+      <mat-label>Description</mat-label>
+      <textarea matInput cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5"
+                placeholder="Décrivez l'article" required [(ngModel)]="publication.pubDescription">
+      </textarea>
+    </mat-form-field >
+    <br>
+    <mat-form-field appearance="fill" class="margin-input">
+      <mat-label>Boutique</mat-label>
+      <select matNativeControl required [(ngModel)]="publication.pubStore">
+        <option value="A&C">A&C</option>
+        <option value="Celine">Camaïeu</option>
+        <option value="Celine">Celine</option>
+        <option value="Chanel">Chanel</option>
+        <option value="Etam">Etam</option>
+        <option value="H&M">H&M</option>
+        <option value="Jenyfer">Jenyfer</option>
+        <option value="Promod">Promod</option>
+        <option value="Zara">Zara</option>
+        <option value="Autre">Autre</option>
+      </select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="margin-input">
+      <mat-label>Lien de l'article</mat-label>
+      <input matInput type="url" placeholder="http://localhost:4200" class="input-size" [(ngModel)]="publication.pubLink">
+    </mat-form-field>
+    <br>
+    <mat-form-field class="margin-input w-52">
+      <ngx-mat-file-input  placeholder="Choose an image" [accept]="'image/*'"></ngx-mat-file-input>
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary" class="margin-center mt-1" >
+      Créer
+    </button>
+  </div>
+</div>

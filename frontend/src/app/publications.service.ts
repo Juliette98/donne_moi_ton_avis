@@ -28,17 +28,20 @@ export class PublicationsService {
   }
 
   getPublication(pubId: any): Observable<any>{
-    console.log(pubId);
-    return this.http.get('http://localhost:3000/publications/' + pubId);
+    return this.http.get('http://localhost:3000/publication/' + pubId);
   }
 
-  savePublication(publication: Publication): void{
-    const index = this.publications.indexOf(publication);
+  /*savePublication(publication: Publication | undefined): void{
+    if (publication instanceof Publication) {
+      const index = this.publications.indexOf(publication);
+    }
     this.publications.splice(index, 1);
-    this.publications.push(publication);
-  }
+    if (publication instanceof Publication) {
+      this.publications.push(publication);
+    }
+  }*/
 
-  updatePublication(publication: Publication): Observable<any>{
+  /*updatePublication(publication: Publication | undefined): Observable<any>{
     return this.http.put('http://localhost:3000/publications/' + publication._id, publication);
-  }
+  }*/
 }

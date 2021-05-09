@@ -9,8 +9,6 @@ import {PublicationsService} from "../publications.service";
   styleUrls: ['./publication-block.component.scss']
 })
 export class PublicationBlockComponent implements OnInit {
-
-  pubStatus = 'view';
   @Input()
   publication!: Publication;
   @Output() deletePublication = new EventEmitter<Publication>();
@@ -28,18 +26,7 @@ export class PublicationBlockComponent implements OnInit {
     this.editPublication.emit(this.publication);
   }
 
-  updatePublication(): void{
-    this.pubStatus = 'loading';
-    this.publicationsService.updatePublication(this.publication).subscribe(
-      (publication: Publication) => {
-        this.pubStatus = 'view';
-      },
-      (error) => {
-        this.pubStatus = 'error';
-        console.log('Publication update error');
-      }
-    );
-  }
+
 }
 
 

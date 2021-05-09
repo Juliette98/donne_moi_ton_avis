@@ -104,4 +104,14 @@ app.get('/publications', (request, response) =>{
     });
 });
 
+// Recherche d'une publication en particulier
+app.get('/publication/:id', (request, response) =>{
+    Publication.findOne( { _id: request.params.id }, (error, publication) => {
+        if (error) {
+            return response.status(404).json({error: error});
+        }
+        response.status(200).json(publication);
+    });
+});
+
 app.listen(3000, ()=>{console.log("Listening on port 3000")});
