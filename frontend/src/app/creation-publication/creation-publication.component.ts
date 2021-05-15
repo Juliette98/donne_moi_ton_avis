@@ -50,7 +50,7 @@ export class CreationPublicationComponent implements OnInit {
     this.publicationService.addPublication(publication, this.image[0]).subscribe(
       () => {
         console.log("Creation ok");
-        this.router.navigate(["/accueil"]);
+        //this.router.navigate(["/accueil"]);
       },
       (error :any ) => {
         console.log('error', error);

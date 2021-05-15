@@ -8,9 +8,6 @@ const User = require('./models/user');
 const Publication = require('./models/publication');
 //gère le telechargement des images
 const multer = require('multer');
-//gère le nom des images
-const path = require('path');
-const slug = require('slug');
 
 mongoose.connect('mongodb+srv://donne_ton_avis:donne_ton_avis@cluster0.dzqqp.mongodb.net/donne_ton_avis?retryWrites=true&w=majority')
     .then(() =>{
@@ -38,7 +35,7 @@ const storage = multer.diskStorage({
         callBack(null, '../frontend/src/assets/images/uploads')
     },
     filename: function (req, file, cb) {
-        cb(null, slug(file.originalname) + path.extname(file.originalname));
+        cb(null, file.originalname);
     }
 })
 
@@ -96,6 +93,7 @@ app.post('/upload', upload.single('image'), (request, response, next) =>{
     //Enregistre l'image
     const image = request.body;
     if (!image){
+        console.log("erreur");
         const error = new Error ("'Erreur lors du chargement de l'image ");
         error.httpStatusCode = 400;
         return next(error)

@@ -18,9 +18,9 @@ export class PublicationsService {
   addPublication(publication: Publication, image: any): Observable<any>{
     const formData = new FormData();
     formData.append('image', image, image.name);
-    //Enregistre d'abor l'image
-    this.http.post('http://localhost:3000/upload', formData)
-    return this.http.post('http://localhost:3000/publication',  publication);
+    //Enregistre d'abord l'image
+    return this.http.post('http://localhost:3000/upload', formData)
+    //return this.http.post('http://localhost:3000/publication',  publication);
   }
 
   deletePublication(pubId: any): Observable<any>{
