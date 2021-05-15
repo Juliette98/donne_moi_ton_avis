@@ -3,6 +3,7 @@ import {PublicationsService} from "../publications.service";
 import {Router} from "@angular/router";
 import {Publication} from "../models/publication";
 import {FormControl} from "@angular/forms";
+import {ConnexionService} from "../connexion.service";
 
 @Component({
   selector: 'app-creation-publication',
@@ -20,10 +21,12 @@ export class CreationPublicationComponent implements OnInit {
   link: string = "";
   image: any;
   imageControl: FormControl = new FormControl();
+  connectedUser: any;
 
-  constructor(public publicationService : PublicationsService, public router: Router) {
+  constructor(public publicationService : PublicationsService, public router: Router, connexionService: ConnexionService) {
     //Initialisation du formControl
     this.imageControl = new FormControl(this.image, []);
+    this.connectedUser = connexionService.connectedUser;
   }
 
   ngOnInit(): void {
@@ -46,11 +49,17 @@ export class CreationPublicationComponent implements OnInit {
     publication.pubSize = this.size;
     publication.pubStore = this.store;
     publication.pubLink = this.link;
-    publication.pubImage = this.image[0].name;
-    this.publicationService.addPublication(publication, this.image[0]).subscribe(
+    publication.createdBy = this.connectedUser.id;
+    publication.creatorName = this.connectedUser.fname + " " + this.connectedUser.lname;
+
+    if (this.image)
+      publication.pubImage = this.image[0].name.replace(/\s/g, '').replace(/[^a-zA-Z.\s]/g, "").toLowerCase();
+    else
+      publication.pubImage = "default.jpeg";
+    this.publicationService.addPublication(publication, this.image).subscribe(
       () => {
         console.log("Creation ok");
-        //this.router.navigate(["/accueil"]);
+        this.router.navigate(["/accueil"]);
       },
       (error :any ) => {
         console.log('error', error);

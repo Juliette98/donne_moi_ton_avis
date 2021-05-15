@@ -8,4 +8,6 @@ export class Publication {
   pubStore: string | undefined;
   pubLink: string | undefined;
   pubImage: string | undefined;
+  createdBy?: string | number;
+  creatorName?: string | undefined;
 }

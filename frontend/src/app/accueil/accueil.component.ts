@@ -22,6 +22,8 @@ export class AccueilComponent implements OnInit {
     this.publicationService.getPublications().subscribe(
       (publications: any) =>{
         this.publications = publications;
+        //Pour avoir les nouvelles publications en premier
+        this.publications.reverse();
       },
       () => {
         console.log('Error');

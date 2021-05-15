@@ -55,7 +55,7 @@
     </mat-form-field>
     <br>
     <mat-form-field class="margin-input w-52">
-      <ngx-mat-file-input  placeholder="Choose an image" [accept]="'image/*'"></ngx-mat-file-input>
+      <ngx-mat-file-input  placeholder="{{publication.pubImage}}" [accept]="'image/*'" [formControl]="imageControl"></ngx-mat-file-input>
     </mat-form-field>
     <button type="submit" mat-raised-button color="primary" class="margin-center mb-8" (click)="updatePublication()">
       Mettre à jour

@@ -16,11 +16,24 @@ export class PublicationsService {
   }
 
   addPublication(publication: Publication, image: any): Observable<any>{
-    const formData = new FormData();
-    formData.append('image', image, image.name);
-    //Enregistre d'abord l'image
-    return this.http.post('http://localhost:3000/upload', formData)
-    //return this.http.post('http://localhost:3000/publication',  publication);
+    if (image) {
+      const formData = new FormData();
+      formData.append('image', image[0], image[0].name);
+      //Enregistre d'abord l'image
+      this.uploadImage(formData).subscribe(
+        () => {
+          console.log("upload ok");
+        },
+        (error: any) => {
+          console.log('error', error);
+        }
+      );
+    }
+    return this.http.post('http://localhost:3000/publication',  publication);
+  }
+
+  uploadImage(formData: FormData): Observable<any>{
+    return this.http.post('http://localhost:3000/upload', formData);
   }
 
   deletePublication(pubId: any): Observable<any>{
@@ -31,7 +44,20 @@ export class PublicationsService {
     return this.http.get('http://localhost:3000/publication/' + pubId);
   }
 
-  updatePublication(publication: Publication ): Observable<any>{
+  updatePublication(publication: Publication, image: any): Observable<any>{
+    if (image) {
+      const formData = new FormData();
+      formData.append('image', image[0], image[0].name);
+      //Enregistre d'abord l'image
+      this.uploadImage(formData).subscribe(
+        () => {
+          console.log("upload ok");
+        },
+        (error: any) => {
+          console.log('error', error);
+        }
+      );
+    }
     return this.http.put('http://localhost:3000/publication/' + publication._id, publication);
   }
 }

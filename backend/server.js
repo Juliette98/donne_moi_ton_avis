@@ -35,7 +35,7 @@ const storage = multer.diskStorage({
         callBack(null, '../frontend/src/assets/images/uploads')
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname);
+        cb(null, file.originalname.replace(/\s/g, '').replace(/[^a-zA-Z.\s]/g, "").toLowerCase());
     }
 })
 
@@ -67,7 +67,7 @@ app.get('/islogged', (request, response) => {
         if (error) return response.status(401).json({msg:'Erreur: ' . error.msg});
         if (!user) return response.status(401).json({msg:'Aucun utilisateur connecté'});
         request.session.userId = user._id;
-        response.status(200).json({login: user.login, fname: user.fname, lname: user.lname});
+        response.status(200).json({id: user._id, login: user.login, fname: user.fname, lname: user.lname});
     })
 })
 
@@ -113,6 +113,9 @@ app.post('/publication', (request, response, next) =>{
     pubLink: publication.pubLink,
     pubSize: publication.pubSize,
     pubImage: publication.pubImage,
+    dateCreation: Date.now(),
+    createdBy: publication.createdBy,
+    creatorName: publication.creatorName
     });
 
     //Enregistre dans la base de données
@@ -161,6 +164,7 @@ app.put('/publication/:id', (request, response) =>{
         pubStore: requestPublication.pubStore,
         pubLink: requestPublication.pubLink,
         pubSize: requestPublication.pubSize,
+        pubImage: requestPublication.pubImage
     });
     Publication.updateOne({_id:request.params.id}, newPublication, (error, publication) => {
         if (error) return response.status(400).json({error:error});

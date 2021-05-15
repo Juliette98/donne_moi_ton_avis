@@ -9,6 +9,9 @@ const publicationSchema = mongoose.Schema({
     pubSize: { type: String, required: false },
     pubLink: { type: String, required: false },
     pubImage: { type: String, required: false },
+    dateCreation: { type: Date, required: false },
+    createdBy: {type: String, required: false},
+    creatorName: {type: String, required: false}
 });
 
 module.exports = mongoose.model('publications', publicationSchema);

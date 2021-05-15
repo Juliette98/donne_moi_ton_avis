@@ -1,37 +1,39 @@
 <mat-card class="publication-card">
   <img mat-card-image src="../../assets/images/uploads/{{publication.pubImage}}" alt="Photo of a Shiba Inu" class="pub-image">
-  <span class="pub-title">{{publication.pubTitle}}</span>
-  <button mat-raised-button color="accent" class="button-store"
-          matBadge="8" matBadgePosition="before" matBadgeColor="accent">
-    {{publication.pubStore}}
-  </button>
-  <button mat-button [matMenuTriggerFor]="menu" class="setting">
-    <mat-icon class="font-size-25">settings</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="editPublicationEvent()">
-      <mat-icon class="icon">edit</mat-icon>
-      Modifier
+  <div class="d-inline">
+    <span class="pub-title">{{publication.pubTitle}}</span>
+    <button mat-raised-button color="accent" class="button-store"
+            matBadge="8" matBadgePosition="before" matBadgeColor="accent">
+      {{publication.pubStore}}
     </button>
-    <button mat-menu-item (click)="deletePublicationEvent()">
-      <mat-icon class="icon">delete</mat-icon>
-      Supprimer
+    <button mat-button [matMenuTriggerFor]="menu" class="setting" *ngIf="isAuthor">
+      <mat-icon class="font-size-25">settings</mat-icon>
     </button>
-  </mat-menu>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="editPublicationEvent()">
+        <mat-icon class="icon">edit</mat-icon>
+        Modifier
+      </button>
+      <button mat-menu-item (click)="deletePublicationEvent()">
+        <mat-icon class="icon">delete</mat-icon>
+        Supprimer
+      </button>
+    </mat-menu>
 
-  <span class="pub-ref" *ngIf="publication.pubRef">Référence: {{publication.pubRef}}</span>
+    <span class="pub-ref" *ngIf="publication.pubRef">Référence: {{publication.pubRef}}</span>
 
-  <span class="pub-description">
-    {{publication.pubDescription}}
-  </span>
+    <span class="pub-description">
+      {{publication.pubDescription}}
+    </span>
 
-  <span class="pub-info">
-    {{publication.pubPrice}}€ | Taille {{publication.pubSize}}
-  </span>
+    <span class="pub-info">
+      {{publication.pubPrice}}€ | Taille {{publication.pubSize}}
+    </span>
 
-  <div class="pub-author">
-    <mat-icon class="font-size-25">account_circle</mat-icon>
-    <span class="author-name">Juliette Rasoarilala</span>
+    <div class="pub-author" *ngIf="publication.creatorName">
+      <mat-icon class="font-size-25">account_circle</mat-icon>
+      <span class="author-name">{{publication.creatorName | titlecase}}</span>
+    </div>
   </div>
 
 </mat-card>
