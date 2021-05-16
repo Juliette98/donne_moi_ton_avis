@@ -9,11 +9,11 @@
         step="5"
         min="0"
         max="300"
-        aria-label="units"></mat-slider>
+        aria-label="units" [(ngModel)]="prixMax"></mat-slider>
     </div>
     <div class="d-inline margin-filter-field">
       <mat-label>Boutique: </mat-label>
-      <select >
+      <select [(ngModel)]="boutique">
         <option value=""></option>
         <option value="A&C">A&C</option>
         <option value="Celine">Camaïeu</option>
@@ -32,10 +32,10 @@
       <input type="text"
              placeholder="Pantalon jean"
              aria-label="Number"
-             >
+             [(ngModel)]="motCle">
     </div>
     <div class="d-inline margin-filter-field">
-      <button  mat-raised-button color="primary">
+      <button  mat-raised-button color="primary" (click)="filtrer()">
         Filtrer
       </button>
     </div>

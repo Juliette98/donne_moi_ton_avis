@@ -20,7 +20,8 @@
       </button>
     </mat-menu>
 
-    <span class="pub-ref" *ngIf="publication.pubRef">Référence: {{publication.pubRef}}</span>
+    <span class="pub-ref date">{{date}} <span *ngIf="publication.pubRef"> | Ref: {{publication.pubRef}}</span></span>
+
 
     <span class="pub-description">
       {{publication.pubDescription}}

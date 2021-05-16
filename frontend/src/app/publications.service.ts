@@ -60,4 +60,9 @@ export class PublicationsService {
     }
     return this.http.put('http://localhost:3000/publication/' + publication._id, publication);
   }
+
+  filtrer(prixMax: number, boutique: string, motCle:string): Observable<any>{
+    console.log("vfdvdf");
+    return this.http.post('http://localhost:3000/filtre', {prixMax, boutique, motCle});
+  }
 }

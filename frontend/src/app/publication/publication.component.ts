@@ -26,7 +26,7 @@ export class PublicationComponent implements OnInit {
     //Récupération de la publication qu'on veut modifier
     this.id = this.route.snapshot.paramMap.get('id');
     this.publication = {_id: 0, pubTitle: '', pubRef: '', pubDescription: '', pubPrice: 0,
-      pubSize: '', pubStore: '', pubLink: '', pubImage: ''};
+      pubSize: '', pubStore: '', pubLink: '', pubImage: '', dateCreation:''};
     this.publicationsService.getPublication(this.id).subscribe(
       (publication: Publication) => {
         this.publication = publication;

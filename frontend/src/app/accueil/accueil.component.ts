@@ -11,6 +11,9 @@ import {Router} from "@angular/router";
 export class AccueilComponent implements OnInit {
 
   publications: any;
+  prixMax: any;
+  boutique: any;
+  motCle: any;
 
   constructor(public publicationService: PublicationsService, public router: Router) { }
 
@@ -45,6 +48,13 @@ export class AccueilComponent implements OnInit {
 
   editPublication(publication: Publication): void{
     this.router.navigate(['/publication', publication._id]);
+  }
+
+  filtrer(): void{
+    console.log(this.prixMax);
+    console.log(this.boutique);
+    console.log(this.motCle);
+    this.publicationService.filtrer(this.prixMax, this.boutique, this.motCle);
   }
 
 }

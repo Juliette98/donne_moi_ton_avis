@@ -12,6 +12,7 @@ import {any} from "codelyzer/util/function";
 export class PublicationBlockComponent implements OnInit {
   isAuthor = false;
   connectedUser : any;
+  date?: string;
   @Input()
   publication!: Publication;
   @Output() deletePublication = new EventEmitter<Publication>();
@@ -24,6 +25,8 @@ export class PublicationBlockComponent implements OnInit {
   ngOnInit(): void {
     if (this.connectedUser.id === this.publication.createdBy)
       this.isAuthor = true;
+    const date = new Date(this.publication.dateCreation);
+    this.date = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate() + " à " + date.getHours() + ":" + date.getMinutes();
   }
 
   deletePublicationEvent(): void{

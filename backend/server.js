@@ -172,4 +172,14 @@ app.put('/publication/:id', (request, response) =>{
     });
 });
 
+// recherche de publication selon des filtres
+app.post('/filtre', (request, response) =>{
+    const prixMax = request.body.prixMax;
+    const boutique = request.body.boutique;
+    const motCle = request.body.motCle;
+    console.log(prixMax);
+    console.log(boutique);
+    console.log(motCle);
+});
+
 app.listen(3000, ()=>{console.log("Listening on port 3000")});

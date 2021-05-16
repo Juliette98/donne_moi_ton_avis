@@ -8,6 +8,7 @@ export class Publication {
   pubStore: string | undefined;
   pubLink: string | undefined;
   pubImage: string | undefined;
+  dateCreation = Date.now().toString();
   createdBy?: string | number;
   creatorName?: string | undefined;
 }
