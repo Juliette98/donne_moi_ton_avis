@@ -54,7 +54,17 @@ export class AccueilComponent implements OnInit {
     console.log(this.prixMax);
     console.log(this.boutique);
     console.log(this.motCle);
-    this.publicationService.filtrer(this.prixMax, this.boutique, this.motCle);
+    this.publicationService.filtrer(this.prixMax, this.boutique, this.motCle).subscribe(
+      (publications: any) =>{
+        console.log("requete recu")
+        this.publications = publications;
+        //Pour avoir les nouvelles publications en premier
+        this.publications.reverse();
+      },
+      () => {
+        console.log('Error');
+      }
+    );
   }
 
 }

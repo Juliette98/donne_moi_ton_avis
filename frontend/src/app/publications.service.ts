@@ -63,6 +63,6 @@ export class PublicationsService {
 
   filtrer(prixMax: number, boutique: string, motCle:string): Observable<any>{
     console.log("vfdvdf");
-    return this.http.post('http://localhost:3000/filtre', {prixMax, boutique, motCle});
+    return this.http.post('http://localhost:3000/filtre', {prixMax: prixMax, boutique: boutique, motCle: motCle});
   }
 }

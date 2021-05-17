@@ -19,7 +19,6 @@ export class PublicationBlockComponent implements OnInit {
   @Output() editPublication = new EventEmitter<Publication>();
   constructor(connexionService: ConnexionService) {
     this.connectedUser = connexionService.connectedUser;
-
   }
 
   ngOnInit(): void {
@@ -27,6 +26,7 @@ export class PublicationBlockComponent implements OnInit {
       this.isAuthor = true;
     const date = new Date(this.publication.dateCreation);
     this.date = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate() + " à " + date.getHours() + ":" + date.getMinutes();
+
   }
 
   deletePublicationEvent(): void{

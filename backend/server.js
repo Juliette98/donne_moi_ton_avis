@@ -174,12 +174,26 @@ app.put('/publication/:id', (request, response) =>{
 
 // recherche de publication selon des filtres
 app.post('/filtre', (request, response) =>{
-    const prixMax = request.body.prixMax;
-    const boutique = request.body.boutique;
-    const motCle = request.body.motCle;
-    console.log(prixMax);
-    console.log(boutique);
-    console.log(motCle);
+    let prixMax = request.body.prixMax;
+    let boutique = request.body.boutique;
+    let motCle = request.body.motCle;
+    // si le prix n'est pas renseigné, on fixe le max à 1000
+    if (!prixMax) prixMax = 1000;
+    if (!boutique ) boutique = "";
+    if (!motCle) motCle = "";
+    console.log(prixMax); console.log(boutique); console.log(motCle);
+    Publication.find( {$and: [
+                {'pubStore': { "$regex": boutique, "$options": "i" } },
+                {'pubTitle': { "$regex": motCle, "$options": "i" }},
+                {'pubRef': { "$regex": motCle, "$options": "i" }},
+                {'pubDescription': { "$regex": motCle, "$options": "i" }},
+                {'pubStore': { "$regex": motCle, "$options": "i" }},
+                {'pubLink': { "$regex": motCle, "$options": "i" }},
+                {'pubPrice': {$lt: prixMax + 1}} ]},
+        function(err,publications){
+            console.log(publications);
+            if(!err) response.json(publications);
+        });
 });
 
 app.listen(3000, ()=>{console.log("Listening on port 3000")});
