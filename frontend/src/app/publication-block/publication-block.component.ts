@@ -37,7 +37,6 @@ export class PublicationBlockComponent implements OnInit {
     this.editPublication.emit(this.publication);
   }
 
-
 }
 
 
