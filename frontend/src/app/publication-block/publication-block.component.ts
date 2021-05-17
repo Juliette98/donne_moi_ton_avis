@@ -2,7 +2,6 @@ import {Component, Input, OnInit, Output} from '@angular/core';
 import {Publication} from "../models/publication";
 import {EventEmitter} from "@angular/core";
 import {ConnexionService} from "../connexion.service";
-import {any} from "codelyzer/util/function";
 
 @Component({
   selector: 'app-publication-block',

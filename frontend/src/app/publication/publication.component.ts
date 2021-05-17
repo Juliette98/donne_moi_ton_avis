@@ -24,11 +24,6 @@ export class PublicationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //Si l'utilisateur n'a pas un compte
-    let connectedUser = this.connexionService.connectedUser;
-    if (!connectedUser)
-      this.router.navigate(["/connexion"]);
-
     //Récupération de la publication qu'on veut modifier
     this.id = this.route.snapshot.paramMap.get('id');
     this.publication = {_id: 0, pubTitle: '', pubRef: '', pubDescription: '', pubPrice: 0,

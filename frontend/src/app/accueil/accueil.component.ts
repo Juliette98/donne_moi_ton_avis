@@ -10,7 +10,6 @@ import {ConnexionService} from "../connexion.service";
   styleUrls: ['./accueil.component.scss']
 })
 export class AccueilComponent implements OnInit {
-
   publications: any;
   prixMax: any;
   boutique: any;
@@ -20,12 +19,10 @@ export class AccueilComponent implements OnInit {
   constructor(public publicationService: PublicationsService, public connexionService: ConnexionService ,public router: Router) { }
 
   ngOnInit(): void {
-    //Si l'utilisateur n'a pas un compte
     let connectedUser = this.connexionService.connectedUser;
-    if (!connectedUser)
-      this.router.navigate(["/connexion"]);
-
-    this.getNotes()
+    console.log(connectedUser);
+   // if (connectedUser===null) this.router.navigate(['/connexion']);
+    this.getNotes();
   }
 
   getNotes(): void{
