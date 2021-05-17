@@ -14,6 +14,7 @@ export class AccueilComponent implements OnInit {
   prixMax: any;
   boutique: any;
   motCle: any;
+  noResult = false;
 
   constructor(public publicationService: PublicationsService, public router: Router) { }
 
@@ -27,6 +28,7 @@ export class AccueilComponent implements OnInit {
         this.publications = publications;
         //Pour avoir les nouvelles publications en premier
         this.publications.reverse();
+        if (this.publications.length ===0) this.noResult = true;
       },
       () => {
         console.log('Error');
@@ -56,10 +58,11 @@ export class AccueilComponent implements OnInit {
     console.log(this.motCle);
     this.publicationService.filtrer(this.prixMax, this.boutique, this.motCle).subscribe(
       (publications: any) =>{
-        console.log("requete recu")
         this.publications = publications;
         //Pour avoir les nouvelles publications en premier
         this.publications.reverse();
+        if (this.publications.length ===0) this.noResult = true;
+        else this.noResult = false;
       },
       () => {
         console.log('Error');

@@ -184,11 +184,12 @@ app.post('/filtre', (request, response) =>{
     console.log(prixMax); console.log(boutique); console.log(motCle);
     Publication.find( {$and: [
                 {'pubStore': { "$regex": boutique, "$options": "i" } },
-                {'pubTitle': { "$regex": motCle, "$options": "i" }},
-                {'pubRef': { "$regex": motCle, "$options": "i" }},
-                {'pubDescription': { "$regex": motCle, "$options": "i" }},
-                {'pubStore': { "$regex": motCle, "$options": "i" }},
-                {'pubLink': { "$regex": motCle, "$options": "i" }},
+                {$or: [
+                        {'pubTitle': { "$regex": motCle, "$options": "i" }},
+                        {'pubRef': { "$regex": motCle, "$options": "i" }},
+                        {'pubDescription': { "$regex": motCle, "$options": "i" }},
+                        {'pubLink': { "$regex": motCle, "$options": "i" }},
+                    ]},
                 {'pubPrice': {$lt: prixMax + 1}} ]},
         function(err,publications){
             console.log(publications);

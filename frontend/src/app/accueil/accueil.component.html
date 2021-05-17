@@ -42,5 +42,9 @@
   </div>
   <div>
     <app-publication-block *ngFor="let publication of publications" [publication]="publication" (deletePublication)="deletePublication($event)" (editPublication)="editPublication($event)"></app-publication-block>
+    <div *ngIf="noResult">
+      <span class="text-no-result"> No result found </span>
+      <img class="img-center" src="../../assets/images/util/no_result.png"/>
+    </div>
   </div>
 </div>
