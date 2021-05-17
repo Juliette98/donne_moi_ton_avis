@@ -30,6 +30,10 @@ export class CreationPublicationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //Si l'utilisateur n'a pas un compte
+    if (!this.connectedUser)
+      this.router.navigate(["/connexion"]);
+
     //Récupération de l'image au chargement
     this.imageControl.valueChanges.subscribe((files: any) => {
       if (!Array.isArray(files)) {

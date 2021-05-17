@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {PublicationsService} from "../publications.service";
 import {Publication} from "../models/publication";
 import {Router} from "@angular/router";
+import {ConnexionService} from "../connexion.service";
 
 @Component({
   selector: 'app-accueil',
@@ -16,9 +17,14 @@ export class AccueilComponent implements OnInit {
   motCle: any;
   noResult = false;
 
-  constructor(public publicationService: PublicationsService, public router: Router) { }
+  constructor(public publicationService: PublicationsService, public connexionService: ConnexionService ,public router: Router) { }
 
   ngOnInit(): void {
+    //Si l'utilisateur n'a pas un compte
+    let connectedUser = this.connexionService.connectedUser;
+    if (!connectedUser)
+      this.router.navigate(["/connexion"]);
+
     this.getNotes()
   }
 
@@ -28,7 +34,7 @@ export class AccueilComponent implements OnInit {
         this.publications = publications;
         //Pour avoir les nouvelles publications en premier
         this.publications.reverse();
-        if (this.publications.length ===0) this.noResult = true;
+        this.noResult = this.publications.length === 0;
       },
       () => {
         console.log('Error');
@@ -61,8 +67,7 @@ export class AccueilComponent implements OnInit {
         this.publications = publications;
         //Pour avoir les nouvelles publications en premier
         this.publications.reverse();
-        if (this.publications.length ===0) this.noResult = true;
-        else this.noResult = false;
+        this.noResult = this.publications.length === 0;
       },
       () => {
         console.log('Error');

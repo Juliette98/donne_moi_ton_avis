@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {Publication} from '../models/publication';
 import {PublicationsService} from "../publications.service";
 import {FormControl} from "@angular/forms";
+import {ConnexionService} from "../connexion.service";
 
 
 @Component({
@@ -17,12 +18,17 @@ export class PublicationComponent implements OnInit {
   image: any;
   imageControl: FormControl = new FormControl();
 
-  constructor(private route: ActivatedRoute, private router: Router, public publicationsService: PublicationsService){
+  constructor(private route: ActivatedRoute, private router: Router, public publicationsService: PublicationsService, public connexionService: ConnexionService){
     //Initialisation du formControl
     this.imageControl = new FormControl(this.image, []);
   }
 
   ngOnInit(): void {
+    //Si l'utilisateur n'a pas un compte
+    let connectedUser = this.connexionService.connectedUser;
+    if (!connectedUser)
+      this.router.navigate(["/connexion"]);
+
     //Récupération de la publication qu'on veut modifier
     this.id = this.route.snapshot.paramMap.get('id');
     this.publication = {_id: 0, pubTitle: '', pubRef: '', pubDescription: '', pubPrice: 0,

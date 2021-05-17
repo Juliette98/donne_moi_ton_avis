@@ -61,7 +61,7 @@ app.get('/logout', (request, response) => {
 
 // Teste si un utilisateur est connecté
 app.get('/islogged', (request, response) => {
-    if(!request.session.userId) return response.status(401).json();
+    if(!request.session.userId) return response.status(401).json({msg:'Aucun utilisateur connecté'});
 
     User.findOne({_id: request.session.userId}, (error, user) => {
         if (error) return response.status(401).json({msg:'Erreur: ' . error.msg});
