@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
 export class ConnexionService {
 
   connectedUser: any = null;
+  isConnected = false;
 
   constructor(private http: HttpClient, public router: Router) {
     this.isLogged();
@@ -26,10 +27,17 @@ export class ConnexionService {
     this.http.get('http://localhost:3000/islogged', { withCredentials: true}).subscribe(
       (connectedUser) => {
         this.connectedUser = connectedUser;
+        this.isConnected = true;
+        console.log("Connected")
       },
-      (error) => {
+      () => {
+        this.router.navigate(["/connexion"]);
         console.log('not connected');
       }
     );
+  }
+
+  profil(userId: any): Observable<any>{
+    return this.http.get('http://localhost:3000/profil/' + userId);
   }
 }

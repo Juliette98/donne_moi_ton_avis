@@ -5,6 +5,8 @@ import {ConnexionComponent} from "./connexion/connexion.component";
 import {InscriptionComponent} from "./inscription/inscription.component";
 import {CreationPublicationComponent} from "./creation-publication/creation-publication.component";
 import {PublicationComponent} from "./publication/publication.component";
+import {ProfilComponent} from "./profil/profil.component";
+import {MesPublicationsComponent} from "./mes-publications/mes-publications.component";
 
 const routes: Routes = [
   {path: '', component:ConnexionComponent},
@@ -12,7 +14,9 @@ const routes: Routes = [
   {path: 'connexion', component:ConnexionComponent},
   {path: 'inscription', component:InscriptionComponent},
   {path: 'creation', component:CreationPublicationComponent},
-  {path: 'publication/:id', component: PublicationComponent}
+  {path: 'publication/:id', component: PublicationComponent},
+  {path: 'profil/:id', component: ProfilComponent},
+  {path: 'mes-publications/:id', component: MesPublicationsComponent}
 ];
 
 @NgModule({

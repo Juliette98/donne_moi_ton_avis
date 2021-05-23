@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <img [src]="logoPath" alt="logo" width="200px"/>
+  <a routerLink="/accueil"><img [src]="logoPath" alt="logo" width="200px" /></a>
   <div class="pull-right">
     <button routerLink="/creation" mat-raised-button color="accent" class="align-vertical-super mr-50">
       <mat-icon>add_box</mat-icon>
@@ -11,13 +11,12 @@
     <button mat-button [matMenuTriggerFor]="menu">
       <mat-icon class="font-size-45 align-vertical-sub mr-10">account_circle</mat-icon>
     </button>
-    <span *ngIf="connexionService.connectedUser" mat-button [matMenuTriggerFor]="menu" >
+    <span *ngIf="connexionService.connectedUser" [matMenuTriggerFor]="menu" >
       {{connexionService.connectedUser.fname | titlecase}} {{connexionService.connectedUser.lname | titlecase}}
     </span>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>Profil</button>
-      <button mat-menu-item>Favoris</button>
-      <button mat-menu-item>Paramètre</button>
+      <button mat-menu-item routerLink="/profil/{{connexionService.connectedUser.id}}">Mon profil</button>
+      <button mat-menu-item routerLink="/mes-publications/{{connexionService.connectedUser.id}}">Mes publications</button>
       <button (click)="logout()" mat-menu-item>Déconnexion</button>
     </mat-menu>
   </div>

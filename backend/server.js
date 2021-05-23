@@ -61,7 +61,7 @@ app.get('/logout', (request, response) => {
 
 // Teste si un utilisateur est connecté
 app.get('/islogged', (request, response) => {
-    if(!request.session.userId) return response.status(200).json([]);
+    if(!request.session.userId) return response.status(401).json({msg:'Aucun utilisateur connecté'});
 
     User.findOne({_id: request.session.userId}, (error, user) => {
         if (error) return response.status(401).json({msg:'Erreur: ' . error.msg});
@@ -196,5 +196,22 @@ app.post('/filtre', (request, response) =>{
             if(!err) response.json(publications);
         });
 });
+
+// Recherche de toutes les publications
+app.get('/mes-publications/:id', (request, response) =>{
+    Publication.find({ createdBy: request.params.id }, (error, publications) => {
+        if (error) return console.error(err);
+        response.json(publications);
+    });
+});
+
+// Obtiens les informations sur un utilisateur
+app.get('/profil/:id', (request, response) => {
+    User.findOne({_id: request.params.id}, (error, user) => {
+        if (error) return response.status(401).json({msg:'Erreur: ' . error.msg});
+        response.status(200).json(user);
+    })
+})
+
 
 app.listen(3000, ()=>{console.log("Listening on port 3000")});

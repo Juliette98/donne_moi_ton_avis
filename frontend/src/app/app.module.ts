@@ -28,6 +28,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgxMatFileInputModule } from "@angular-material-components/file-input";
 import { MatSliderModule } from "@angular/material/slider";
 import { MatExpansionModule } from "@angular/material/expansion";
+import { ProfilComponent } from './profil/profil.component';
+import { MesPublicationsComponent } from './mes-publications/mes-publications.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { MatExpansionModule } from "@angular/material/expansion";
     PublicationComponent,
     CreationPublicationComponent,
     PublicationBlockComponent,
+    ProfilComponent,
+    MesPublicationsComponent,
   ],
   imports: [
     BrowserModule,

@@ -23,10 +23,11 @@ export class CreationPublicationComponent implements OnInit {
   imageControl: FormControl = new FormControl();
   connectedUser: any;
 
-  constructor(public publicationService : PublicationsService, public router: Router, connexionService: ConnexionService) {
+  constructor(public publicationService : PublicationsService, public router: Router, public connexionService: ConnexionService) {
     //Initialisation du formControl
     this.imageControl = new FormControl(this.image, []);
     this.connectedUser = connexionService.connectedUser;
+    console.log(this.connectedUser);
   }
 
   ngOnInit(): void {
@@ -58,7 +59,6 @@ export class CreationPublicationComponent implements OnInit {
       publication.pubImage = "default.jpeg";
     this.publicationService.addPublication(publication, this.image).subscribe(
       () => {
-        console.log("Creation ok");
         this.router.navigate(["/accueil"]);
       },
       (error :any ) => {

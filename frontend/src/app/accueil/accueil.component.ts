@@ -16,16 +16,14 @@ export class AccueilComponent implements OnInit {
   motCle: any;
   noResult = false;
 
-  constructor(public publicationService: PublicationsService, public connexionService: ConnexionService ,public router: Router) { }
+  constructor(public publicationService: PublicationsService, public connexionService: ConnexionService ,public router: Router) {}
 
   ngOnInit(): void {
-    let connectedUser = this.connexionService.connectedUser;
-    console.log(connectedUser);
-   // if (connectedUser===null) this.router.navigate(['/connexion']);
-    this.getNotes();
+    // Récupère la liste de toutes les publicactions
+    this.getPublications();
   }
 
-  getNotes(): void{
+  getPublications(): void{
     this.publicationService.getPublications().subscribe(
       (publications: any) =>{
         this.publications = publications;
@@ -56,9 +54,6 @@ export class AccueilComponent implements OnInit {
   }
 
   filtrer(): void{
-    console.log(this.prixMax);
-    console.log(this.boutique);
-    console.log(this.motCle);
     this.publicationService.filtrer(this.prixMax, this.boutique, this.motCle).subscribe(
       (publications: any) =>{
         this.publications = publications;

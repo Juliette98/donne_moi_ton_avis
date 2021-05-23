@@ -16,7 +16,7 @@ export class PublicationBlockComponent implements OnInit {
   publication!: Publication;
   @Output() deletePublication = new EventEmitter<Publication>();
   @Output() editPublication = new EventEmitter<Publication>();
-  constructor(connexionService: ConnexionService) {
+  constructor(public connexionService: ConnexionService) {
     this.connectedUser = connexionService.connectedUser;
   }
 
