@@ -1,12 +1,15 @@
-<a href="{{publication.pubLink}}" target="_blank">
 <mat-card class="publication-card">
-  <img mat-card-image src="../../assets/images/uploads/{{publication.pubImage}}" alt="Photo of a Shiba Inu" class="pub-image">
+  <a href="{{publication.pubLink}}" target="_blank" class="text-black">
+    <img mat-card-image src="../../assets/images/uploads/{{publication.pubImage}}" alt="Photo of a Shiba Inu" class="pub-image">
+  </a>
   <div class="d-inline">
-    <span class="pub-title">{{publication.pubTitle}}</span>
-    <button mat-raised-button color="accent" class="button-store"
-            matBadge="8" matBadgePosition="before" matBadgeColor="accent">
-      {{publication.pubStore}}
-    </button>
+    <a href="{{publication.pubLink}}" target="_blank" class="text-black">
+      <span class="pub-title">{{publication.pubTitle}}</span>
+      <button mat-raised-button color="accent" class="button-store"
+              matBadge="8" matBadgePosition="before" matBadgeColor="accent">
+        {{publication.pubStore}}
+      </button>
+    </a>
     <button mat-button [matMenuTriggerFor]="menu" class="setting" *ngIf="isAuthor">
       <mat-icon class="font-size-25">settings</mat-icon>
     </button>
@@ -21,23 +24,22 @@
       </button>
     </mat-menu>
 
-    <span class="pub-ref date">{{date}} <span *ngIf="publication.pubRef"> | Ref: {{publication.pubRef}}</span></span>
+    <a href="{{publication.pubLink}}" target="_blank" class="text-black">
+      <span class="pub-ref date">{{date}} <span *ngIf="publication.pubRef"> | Ref: {{publication.pubRef}}</span></span>
 
+      <span class="pub-description">
+        {{publication.pubDescription}}
+      </span>
 
-    <span class="pub-description">
-      {{publication.pubDescription}}
-    </span>
+      <span class="pub-info">
+        {{publication.pubPrice}}€ | Taille {{publication.pubSize}}
+      </span>
 
-    <span class="pub-info">
-      {{publication.pubPrice}}€ | Taille {{publication.pubSize}}
-    </span>
-
-    <div class="pub-author" *ngIf="publication.creatorName">
-      <mat-icon class="font-size-25">account_circle</mat-icon>
-      <span class="author-name">{{publication.creatorName | titlecase}}</span>
-    </div>
+      <div class="pub-author" *ngIf="publication.creatorName">
+        <mat-icon class="font-size-25">account_circle</mat-icon>
+        <span class="author-name">{{publication.creatorName | titlecase}}</span>
+      </div>
+    </a>
   </div>
 
 </mat-card>
-
-</a>
