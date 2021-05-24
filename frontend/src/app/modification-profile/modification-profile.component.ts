@@ -38,9 +38,9 @@ export class ModificationProfileComponent implements OnInit {
       birthday: this.birthday,
     }
     this.inscriptionService.updateAccount(user).subscribe(
-      () => {
+      (user) => {
         console.log("Mise à jour terminée");
-        this.router.navigate(['/profil/' + this.id]);
+        location.reload();
       }
     );
   }

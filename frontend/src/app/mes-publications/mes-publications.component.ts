@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PublicationsService} from "../publications.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Publication} from "../models/publication";
 
 @Component({
   selector: 'app-mes-publications',
@@ -11,7 +12,7 @@ export class MesPublicationsComponent implements OnInit {
   publications: any;
   noResult = false;
 
-  constructor(private route: ActivatedRoute, public publicationService: PublicationsService) { }
+  constructor(private route: ActivatedRoute, public publicationService: PublicationsService, public router: Router) { }
 
   ngOnInit(): void {
     // Récupère la liste de toutes les publicactions
@@ -31,5 +32,21 @@ export class MesPublicationsComponent implements OnInit {
         console.log('Error');
       }
     );
+  }
+
+  deletePublication(publication: Publication): void{
+    this.publicationService.deletePublication(publication._id).subscribe(
+      () => {
+        const index = this.publications.indexOf(publication);
+        this.publications.splice(index, 1);
+      },
+      () => {
+        console.log('Erreur lors de la suppression');
+      }
+    )
+  }
+
+  editPublication(publication: Publication): void{
+    this.router.navigate(['/publication', publication._id]);
   }
 }
