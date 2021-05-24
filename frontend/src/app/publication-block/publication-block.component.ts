@@ -21,7 +21,7 @@ export class PublicationBlockComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.connectedUser.id === this.publication.createdBy)
+    if (this.connectedUser._id === this.publication.createdBy)
       this.isAuthor = true;
     const date = new Date(this.publication.dateCreation);
     this.date = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate() + " à " + date.getHours() + ":" + date.getMinutes();

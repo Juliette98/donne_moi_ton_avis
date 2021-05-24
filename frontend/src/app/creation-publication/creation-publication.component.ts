@@ -50,7 +50,7 @@ export class CreationPublicationComponent implements OnInit {
     publication.pubSize = this.size;
     publication.pubStore = this.store;
     publication.pubLink = this.link;
-    publication.createdBy = this.connectedUser.id;
+    publication.createdBy = this.connectedUser._id;
     publication.creatorName = this.connectedUser.fname + " " + this.connectedUser.lname;
 
     if (this.image)

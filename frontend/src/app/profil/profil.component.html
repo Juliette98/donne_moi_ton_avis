@@ -1,7 +1,8 @@
 <app-header></app-header>
 <div class="titre">Mes informations</div>
 <mat-card class="card">
-  <mat-icon class="edit-icon">edit</mat-icon>
+  <mat-icon class="edit-icon" mat-raised-button (click)="openDialog()">edit</mat-icon>
+
   <mat-icon class="card-icon">account_circle</mat-icon>
   <div class="card-info">
     <span class="fw-500">Gender:</span>  {{gender}}

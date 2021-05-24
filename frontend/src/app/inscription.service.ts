@@ -14,7 +14,11 @@ export class InscriptionService {
   }
 
   deleteAccount(userId: any): Observable<any>{
-    return this.http.delete('http://localhost:3000/delete-account/' + userId);
+    return this.http.delete('http://localhost:3000/account/' + userId);
   }
 
+  updateAccount(user: any): Observable<any>{
+    return this.http.put('http://localhost:3000/account/' + user._id, user);
+
+  }
 }

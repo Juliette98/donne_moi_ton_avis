@@ -67,7 +67,7 @@ app.get('/islogged', (request, response) => {
         if (error) return response.status(401).json({msg:'Erreur: ' . error.msg});
         if (!user) return response.status(401).json({msg:'Aucun utilisateur connecté'});
         request.session.userId = user._id;
-        response.status(200).json({id: user._id, login: user.login, fname: user.fname, lname: user.lname});
+        response.status(200).json(user);
     })
 })
 
@@ -214,8 +214,7 @@ app.get('/profil/:id', (request, response) => {
 })
 
 // Supprime un compte et ses publications
-//Suppression d'une publication
-app.delete('/delete-account/:id', (request, response) =>{
+app.delete('/account/:id', (request, response) =>{
     let id = request.params.id;
     //Supprime les publications correspondant
     Publication.deleteMany({createdBy: id}, (error) => {
@@ -229,6 +228,23 @@ app.delete('/delete-account/:id', (request, response) =>{
                 response.status(200).json({msg: 'Utilisateur supprimé avec succès'});
             });
         });
+    });
+});
+
+//Modification d'un compte
+app.put('/account/:id', (request, response) =>{
+    let requestUser = request.body;
+    let newUser = new User({
+        _id: request.params.id,
+        gender: requestUser.gender,
+        fname: requestUser.fname,
+        lname: requestUser.lname,
+        login: requestUser.login,
+        birthday: requestUser.birthday,
+    });
+    User.updateOne({_id:request.params.id}, newUser, (error, user) => {
+        if (error) return response.status(400).json({error:error});
+        response.status(201).json(user);
     });
 });
 

@@ -30,6 +30,7 @@ import { MatSliderModule } from "@angular/material/slider";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { ProfilComponent } from './profil/profil.component';
 import { MesPublicationsComponent } from './mes-publications/mes-publications.component';
+import { ModificationProfileComponent } from './modification-profile/modification-profile.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { MesPublicationsComponent } from './mes-publications/mes-publications.co
     PublicationBlockComponent,
     ProfilComponent,
     MesPublicationsComponent,
+    ModificationProfileComponent,
   ],
   imports: [
     BrowserModule,

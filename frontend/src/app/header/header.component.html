@@ -15,8 +15,8 @@
       {{connexionService.connectedUser.fname | titlecase}} {{connexionService.connectedUser.lname | titlecase}}
     </span>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="/profil/{{connexionService.connectedUser.id}}">Mon profil</button>
-      <button mat-menu-item routerLink="/mes-publications/{{connexionService.connectedUser.id}}">Mes publications</button>
+      <button mat-menu-item routerLink="/profil/{{connexionService.connectedUser._id}}">Mon profil</button>
+      <button mat-menu-item routerLink="/mes-publications/{{connexionService.connectedUser._id}}">Mes publications</button>
       <button (click)="logout()" mat-menu-item>Déconnexion</button>
     </mat-menu>
   </div>
