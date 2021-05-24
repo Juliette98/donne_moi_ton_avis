@@ -39,13 +39,13 @@
   <h2 class="mt-6">Modifier mon mot de passe</h2>
   <mat-form-field appearance="fill" class="pswd-input">
     <mat-label>Ancien mot de passe</mat-label>
-    <input matInput type="password" placeholder="*****" required>
+    <input matInput type="password" placeholder="*****" [(ngModel)]="oldPassword" required>
   </mat-form-field>
   <mat-form-field appearance="fill" class="pswd-input">
     <mat-label>Nouveau mot de passe</mat-label>
-    <input matInput type="password" placeholder="*****" [(ngModel)]="password" required>
+    <input matInput type="password" placeholder="*****" [(ngModel)]="newPassword" required>
   </mat-form-field>
-  <button mat-raised-button color="primary" class="mt-3">
+  <button mat-raised-button color="primary" class="mt-3" (click)="updatePassword()">
     Modifier mon mot de passe
   </button>
 </div>

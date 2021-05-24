@@ -14,7 +14,8 @@ export class ModificationProfileComponent implements OnInit {
   fname: any;
   lname: any;
   login: any;
-  password: any;
+  oldPassword: any;
+  newPassword: any;
   birthday: any;
 
   constructor(public connexionService: ConnexionService, public inscriptionService: InscriptionService, public router: Router) { }
@@ -43,6 +44,15 @@ export class ModificationProfileComponent implements OnInit {
         location.reload();
       }
     );
+  }
+
+  updatePassword(): void{
+    this.inscriptionService.changePassword(this.id, this.oldPassword, this.newPassword).subscribe(
+      () => {
+        console.log("Mot de passe mis à jour avec succès");
+        location.reload();
+      }
+    )
   }
 
 }

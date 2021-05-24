@@ -260,4 +260,29 @@ app.put('/account/:id', (request, response) =>{
 });
 
 
+//Modification du mot de passe
+app.put('/change-pwd/:id', (request, response) =>{
+    let id = request.params.id;
+    let oldPassword = request.body.oldPassword;
+    let newPassword = request.body.newPassword;
+
+    //Vérifie si l'ancien mot de passe correspond et si oui, modifie le mot de passe
+    User.findOne({_id: id}, (error, user) => {
+        if (error) return response.status(401).json({msg: "Erreur: " + error.msg});
+        if (!user) return response.status(401).json({msg: "Pas d'utilisateur trouvé" });
+        bcrypt.compare(oldPassword, user.password, function(err, result) {
+            if (result){
+                bcrypt.hash(newPassword, 5, function(err, hash) {
+                    User.update({_id: id}, {password: hash}, (error, user) => {
+                        if (error) return response.status(400).json({msg:"Erreur lors de la mise à jour"});
+                        response.status(201).json(user);
+                    });
+                });
+            }
+            else return response.status(401).json({msg: "Ancien mot de passe invalide" });
+        });
+
+    });
+});
+
 app.listen(3000, ()=>{console.log("Listening on port 3000")});
