@@ -24,13 +24,13 @@ export class InscriptionComponent implements OnInit {
   }
 
   register(): void {
-       this.inscriptionService.register(this.gender,this.fname,this.lname,this.login,this.password,this.birthday).subscribe(
-         () => {
-           this.router.navigate(['/connexion'])
-         },
-         (error: any) => {
-        console.log('error', error);
-      }
+    this.inscriptionService.register(this.gender,this.fname,this.lname,this.login,this.password,this.birthday).subscribe(
+     () => {
+       this.router.navigate(['/connexion'])
+     },
+     (error: any) => {
+    console.log('error', error);
+    }
     );
   }
 }

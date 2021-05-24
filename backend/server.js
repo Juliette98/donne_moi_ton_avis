@@ -8,6 +8,8 @@ const User = require('./models/user');
 const Publication = require('./models/publication');
 //gère le telechargement des images
 const multer = require('multer');
+// Pour encoder les mdp
+const bcrypt = require('bcrypt');
 
 mongoose.connect('mongodb+srv://donne_ton_avis:donne_ton_avis@cluster0.dzqqp.mongodb.net/donne_ton_avis?retryWrites=true&w=majority')
     .then(() =>{
@@ -16,6 +18,15 @@ mongoose.connect('mongodb+srv://donne_ton_avis:donne_ton_avis@cluster0.dzqqp.mon
     .catch((error) => {
         console.log("Unable to connect to DB!");
     });
+
+/*
+bcrypt.hash("Juliette1234", 5, function(err, hash) {
+    console.log("Mdp:");
+    console.log(hash);
+    bcrypt.compare("Juliette12345", hash, function(err, result) {
+        console.log(result);
+    });
+});*/
 
 app.use((req, res, next) => {
     res.set('Access-Control-Allow-Origin', '*');
@@ -43,11 +54,17 @@ var upload = multer({ storage: storage })
 
 //Pour la connexion
 app.post('/login', (request, response) => {
-    User.findOne({login: request.body.login, password: request.body.password }, (error, user) => {
+    User.findOne({login: request.body.login}, (error, user) => {
         if (error) return response.status(401).json({msg: "Erreur: " + error.msg});
         if (!user) return response.status(401).json({msg: "Pas d'utilisateur trouvé" });
-        request.session.userId = user._id;
-         response.status(200).json({login: user.login, fname: user.fname, lname: user.lname});
+        bcrypt.compare(request.body.password, user.password, function(err, result) {
+            if (result){
+                request.session.userId = user._id;
+                response.status(200).json(user);
+            }
+            else return response.status(401).json({msg: "Mot de passe invalide" });
+        });
+
     });
 });
 
@@ -74,18 +91,21 @@ app.get('/islogged', (request, response) => {
 //Pour l'inscription
 app.post('/register', (request, response) =>{
     let requestUser = request.body;
-    let newUser = new User({
-        gender: requestUser.gender,
-        fname: requestUser.fname,
-        lname: requestUser.lname,
-        login: requestUser.login,
-        password: requestUser.password,
-        birthday: requestUser.birthday
-    }).save((error, client, err = null) => {
-        if (error) return console.error(err);
-        console.log(client);
-        response.json(client);
-    })
+    //Encode le mot de passe
+    bcrypt.hash(requestUser.password, 5, function(err, hash) {
+        new User({
+            gender: requestUser.gender,
+            fname: requestUser.fname,
+            lname: requestUser.lname,
+            login: requestUser.login,
+            password: hash,
+            birthday: requestUser.birthday
+        }).save((error, user, err = null) => {
+            if (error) return console.error(err);
+            console.log(user);
+            response.json(user);
+        })
+    });
 });
 
 // Pour gérer les images
