@@ -19,15 +19,6 @@ mongoose.connect('mongodb+srv://donne_ton_avis:donne_ton_avis@cluster0.dzqqp.mon
         console.log("Unable to connect to DB!");
     });
 
-/*
-bcrypt.hash("Juliette1234", 5, function(err, hash) {
-    console.log("Mdp:");
-    console.log(hash);
-    bcrypt.compare("Juliette12345", hash, function(err, result) {
-        console.log(result);
-    });
-});*/
-
 app.use((req, res, next) => {
     res.set('Access-Control-Allow-Origin', '*');
     res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
