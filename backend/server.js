@@ -213,5 +213,24 @@ app.get('/profil/:id', (request, response) => {
     })
 })
 
+// Supprime un compte et ses publications
+//Suppression d'une publication
+app.delete('/delete-account/:id', (request, response) =>{
+    let id = request.params.id;
+    //Supprime les publications correspondant
+    Publication.deleteMany({createdBy: id}, (error) => {
+        if (error) return response.status(400).json({error:"Erreur lors de la suppression des publications"});
+        //Supprime l'utilisateur
+        User.deleteOne({_id: id}, (error) => {
+            if (error) return response.status(400).json({error:"Erreur lors de la suppression de l'utilisateur"});
+            //Déconnecte l'utilisateur
+            request.session.destroy(error => {
+                if(error) return response.status(409).json({msg: 'error'});
+                response.status(200).json({msg: 'Utilisateur supprimé avec succès'});
+            });
+        });
+    });
+});
+
 
 app.listen(3000, ()=>{console.log("Listening on port 3000")});

@@ -23,12 +23,13 @@
 <div class="card-delete">
   <mat-expansion-panel hideToggle>
     <mat-expansion-panel-header>
-      <mat-panel-title>
+      <mat-panel-title class="red">
         Supprimer votre compte?
       </mat-panel-title>
     </mat-expansion-panel-header>
     <p>Êtes-vous sûre?</p>
-    <button mat-raised-button color="warn" class="mt-3"> Oui supprimer mon compte </button>
+    <p>En supprimant votre compte, vous  supprimerez également tous vos avis/publications</p>
+    <button mat-raised-button color="warn" class="mt-3" (click)="delete()"> Oui supprimer mon compte </button>
   </mat-expansion-panel>
 </div>
 

@@ -13,4 +13,8 @@ export class InscriptionService {
     return this.http.post('http://localhost:3000/register',{gender, fname, lname, login, password, birthday}, {withCredentials: true});
   }
 
+  deleteAccount(userId: any): Observable<any>{
+    return this.http.delete('http://localhost:3000/delete-account/' + userId);
+  }
+
 }

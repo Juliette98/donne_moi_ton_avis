@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ConnexionService} from "../connexion.service";
+import {InscriptionService} from "../inscription.service";
 
 @Component({
   selector: 'app-profil',
@@ -14,7 +15,7 @@ export class ProfilComponent implements OnInit {
   email: any;
   birthday: any;
 
-  constructor(private route: ActivatedRoute, public connexionService: ConnexionService) { }
+  constructor(private route: ActivatedRoute, public connexionService: ConnexionService, public inscriptionService: InscriptionService, public router: Router) { }
 
   ngOnInit(): void {
     this.profil();
@@ -29,6 +30,16 @@ export class ProfilComponent implements OnInit {
         this.lname = user.lname;
         this.email = user.login;
         this.birthday = user.birthday;
+      }
+    );
+  }
+
+  delete(): void {
+    let id = this.route.snapshot.paramMap.get('id');
+    this.inscriptionService.deleteAccount(id).subscribe(
+      () => {
+        console.log("L'utilisateur a été supprimé avec succès");
+        this.router.navigate(['/connexion']);
       }
     );
   }
