@@ -253,9 +253,23 @@ app.put('/account/:id', (request, response) =>{
         login: requestUser.login,
         birthday: requestUser.birthday,
     });
+
+    //Met à jour l'utilisateur
     User.updateOne({_id:request.params.id}, newUser, (error, user) => {
         if (error) return response.status(400).json({error:error});
         response.status(201).json(user);
+    });
+
+    //Met à jour son nom sur les publicatons
+    creatorName = requestUser.fname + " " + requestUser.lname
+    Publication.find({ createdBy: request.params.id }, (error, publications) => {
+        if (error) return console.error(error);
+        publications.forEach( function(publication){
+            pubId = publication._id;
+            Publication.updateOne({_id: pubId}, {creatorName: creatorName}, (error, publication) => {
+                if (error) return response.status(400).json({error:error});
+            });
+        });
     });
 });
 
@@ -273,7 +287,7 @@ app.put('/change-pwd/:id', (request, response) =>{
         bcrypt.compare(oldPassword, user.password, function(err, result) {
             if (result){
                 bcrypt.hash(newPassword, 5, function(err, hash) {
-                    User.update({_id: id}, {password: hash}, (error, user) => {
+                    User.updateOne({_id: id}, {password: hash}, (error, user) => {
                         if (error) return response.status(400).json({msg:"Erreur lors de la mise à jour"});
                         response.status(201).json(user);
                     });
