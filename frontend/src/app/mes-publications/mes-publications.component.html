@@ -1,4 +1,13 @@
 <app-header></app-header>
 <div class="titre">Mes publications</div>
 <app-publication-block *ngFor="let publication of publications" [publication]="publication" (deletePublication)="deletePublication($event)" (editPublication)="editPublication($event)"></app-publication-block>
+<div *ngIf="noResult">
+  <img class="img-center" src="../../assets/images/util/no_publication.png"/>
+  <div class="text-center">
+    <button  routerLink="/creation" mat-raised-button color="accent">
+      <mat-icon>add_box</mat-icon>
+      Créez-en une ici
+    </button>
+  </div>
 
+</div>
